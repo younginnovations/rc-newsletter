@@ -1,16 +1,25 @@
 <?php
 
+Route::get(
+    '/',
+    function () {
+        return view('welcome');
+    }
+);
+
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Auth
 |--------------------------------------------------------------------------
 |
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
 */
+Route::group(
+    ['namespace' => 'Admin'],
+    function () {
+        Route::get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
+        Route::post('login', ['as' => 'login.post', 'uses' => 'AuthController@loginPost']);
+        Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+        Route::get('dashboard', ['as' => 'admin.dashboard','uses' => 'PageController@index']);
+    }
+);
