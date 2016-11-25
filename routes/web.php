@@ -1,11 +1,8 @@
 <?php
 
-Route::get(
-    '/',
-    function () {
-        return view('welcome');
-    }
-);
+Route::get('/', ['as' => 'home', 'uses' => 'SiteController@home']);
+
+Route::post('subscribe', ['as' => 'subscribe', 'uses' => 'SiteController@subscribe']);
 
 /*
 |--------------------------------------------------------------------------
