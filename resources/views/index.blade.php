@@ -12,15 +12,15 @@
 	<div class="form__heading">
 		<span>Subscription Details</span>
 	</div>
-	@if(Session::has('message'))
-		<div class="alert alert-danger alert-dismissable">
-			<button type="button" class="close" data-dismiss="alert">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			{{ Session::get('message') }}
-		</div>
-	@endif
 	<div class="form__body">
+		@if(Session::has('message'))
+			<div class="alert alert-danger alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				{{ Session::get('message') }}
+			</div>
+		@endif
 		<div class="form__group">
 			<label class="form__label form__label block">Email</label>
 			<input type="text" name="email" class="form__field form__field block no-border" placeholder="Enter your
