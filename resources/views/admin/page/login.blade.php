@@ -16,7 +16,14 @@
 	<div class="col-sm-6 col-sm-offset-3">
 
 		<h1><span class="fa fa-sign-in"></span> Login</h1>
-
+		@if(Session::has('error'))
+			<div class="alert alert-danger alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				{{ Session::get('error') }}
+			</div>
+		@endif
 		<form role="form" action="{{route('login.post')}}" method="post">
 			<div class="form-group">
 				<label>Email</label>

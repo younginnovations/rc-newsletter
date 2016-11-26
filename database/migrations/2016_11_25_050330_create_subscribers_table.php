@@ -17,7 +17,7 @@ class CreateSubscribersTable extends Migration
         {
             $table->increments('id');
             $table->string('email', 150)->unique();
-            $table->string('country', 150)->unique();
+            $table->string('country', 150);
             $table->string('corporate_group');
             $table->integer('status');
             $table->timestamps();

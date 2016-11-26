@@ -54,9 +54,14 @@ class SiteController extends Controller
         $subscriber->corporate_group = $corporate_group;
         $subscriber->status          = 1;
 
-        $subscriber->save();
-
-        return view('thanks');
+        try {
+            $subscriber->save();
+            return view('thanks');
+        }
+        catch (\Exception $e)
+        {
+            return redirect()->route('home')->withInput()->with('message', 'This email is already subscribed !');
+        }
     }
 
 }

@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Subscribe</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 	<link href="{{url('css/style.css')}}" rel="stylesheet"/>
 </head>
 <body>
@@ -10,6 +12,14 @@
 	<div class="form__heading">
 		<span>Subscription Details</span>
 	</div>
+	@if(Session::has('message'))
+		<div class="alert alert-danger alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			{{ Session::get('message') }}
+		</div>
+	@endif
 	<div class="form__body">
 		<div class="form__group">
 			<label class="form__label form__label block">Email</label>
