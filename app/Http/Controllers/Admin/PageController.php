@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class PageController
@@ -19,7 +20,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('admin.page.dashboard');
+        $subscribers = json_decode (DB::table('subscribers')->get());
+        return view('admin.page.dashboard', compact('subscribers'));
     }
 
 }

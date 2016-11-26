@@ -229,69 +229,27 @@
 										<table class="table table-bordered table-striped table-condensed">
 											<thead>
 											<tr>
-												<th>Code</th>
-												<th>Company</th>
-												<th class="numeric">Price</th>
-												<th class="numeric">Change</th>
+												<th>Id</th>
+												<th>Email</th>
+												<th>Country</th>
+												<th>Corporate Group</th>
+												<th>Status</th>
+												<th>Created Time</th>
+												<th>Updated Time</th>
 											</tr>
 											</thead>
 											<tbody>
-											<tr>
-												<td>AAC</td>
-												<td>AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
-												<td class="numeric">$1.38</td>
-											</tr>
-											<tr>
-												<td>AAD</td>
-												<td>ARDENT LEISURE GROUP</td>
-												<td class="numeric">$1.15</td>
-											</tr>
-											<tr>
-												<td>AAX</td>
-												<td>AUSENCO LIMITED</td>
-												<td class="numeric">$4.00</td>
-											</tr>
-											<tr>
-												<td>ABC</td>
-												<td>ADELAIDE BRIGHTON LIMITED</td>
-												<td class="numeric">$3.00</td>
-											</tr>
-											<tr>
-												<td>ABP</td>
-												<td>ABACUS PROPERTY GROUP</td>
-												<td class="numeric">$1.91</td>
-											</tr>
-											<tr>
-												<td>ABY</td>
-												<td>ADITYA BIRLA MINERALS LIMITED</td>
-												<td class="numeric">$0.77</td>
-											</tr>
-											<tr>
-												<td>ACR</td>
-												<td>ACRUX LIMITED</td>
-												<td class="numeric">$3.71</td>
-												<td class="numeric">  +0.01</td>
-											</tr>
-											<tr>
-												<td>ADU</td>
-												<td>ADAMUS RESOURCES LIMITED</td>
-												<td class="numeric">$0.72</td>
-											</tr>
-											<tr>
-												<td>AGG</td>
-												<td>ANGLOGOLD ASHANTI LIMITED</td>
-												<td class="numeric">$7.81</td>
-											</tr>
-											<tr>
-												<td>AGK</td>
-												<td>AGL ENERGY LIMITED</td>
-												<td class="numeric">$13.82</td>
-											</tr>
-											<tr>
-												<td>AGO</td>
-												<td>ATLAS IRON LIMITED</td>
-												<td class="numeric">$3.17</td>
-											</tr>
+											@foreach($subscribers as $subscriber)
+												<tr>
+													<td>{{$subscriber->id}}</td>
+													<td>{{$subscriber->email}}</td>
+													<td>{{$subscriber->country}}</td>
+													<td>{{$subscriber->corporate_group}}</td>
+													<td>{{$subscriber->status}}</td>
+													<td>{{$subscriber->created_at}}</td>
+													<td>{{$subscriber->updated_at}}</td>
+												</tr>
+											@endforeach
 											</tbody>
 										</table>
 									</section>
