@@ -20,6 +20,7 @@ class CreateSubscribersTable extends Migration
             $table->string('country', 150);
             $table->string('corporate_group');
             $table->integer('status');
+            $table->string('token');
             $table->timestamps();
         });
     }

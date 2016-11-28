@@ -234,6 +234,7 @@
 												<th>Country</th>
 												<th>Corporate Group</th>
 												<th>Status</th>
+												<th>Token</th>
 												<th>Created Time</th>
 												<th>Updated Time</th>
 											</tr>
@@ -246,6 +247,7 @@
 													<td>{{$subscriber->country}}</td>
 													<td>{{$subscriber->corporate_group}}</td>
 													<td>{{$subscriber->status}}</td>
+													<td>{{$subscriber->token}}</td>
 													<td>{{$subscriber->created_at}}</td>
 													<td>{{$subscriber->updated_at}}</td>
 												</tr>
