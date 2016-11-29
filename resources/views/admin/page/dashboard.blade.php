@@ -233,8 +233,8 @@
 												<th>Email</th>
 												<th>Country</th>
 												<th>Corporate Group</th>
+												<th>Source</th>
 												<th>Status</th>
-												<th>Token</th>
 												<th>Created Time</th>
 												<th>Updated Time</th>
 											</tr>
@@ -244,12 +244,12 @@
 												<tr>
 													<td>{{$subscriber->id}}</td>
 													<td>{{$subscriber->email}}</td>
-													<td>{{$subscriber->country}}</td>
-													<td>{{$subscriber->corporate_group}}</td>
+													<td>{{join(',', $subscriber->group->country)}}</td>
+													<td>{{join(',', $subscriber->group->corporate_group)}}</td>
+													<td>{{$subscriber->source}}</td>
 													<td>{{$subscriber->status}}</td>
-													<td>{{$subscriber->token}}</td>
-													<td>{{$subscriber->created_at}}</td>
-													<td>{{$subscriber->updated_at}}</td>
+													<td>{{$subscriber->created_at->format('Y-m-d')}}</td>
+													<td>{{$subscriber->updated_at->format('Y-m-d')}}</td>
 												</tr>
 											@endforeach
 											</tbody>

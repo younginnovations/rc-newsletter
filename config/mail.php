@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => 'newsletter@noreply.com',
+        'address' => 'noreply@resourcecontracts.com',
         'name' => 'Subsite Newsletter',
     ],
 

@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Http\Models\Subscriber;
 use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\Mail;
 
@@ -17,13 +18,14 @@ class ConfirmationService
     }
 
     /**
-     * write brief description
+     * Send confirmation email to subscriber
      *
-     * @param $email
-     * @param $token
+     * @param Subscriber $subscriber
+     *
+     * @return
      */
-    public function sendConfirmationEmail($email, $token)
+    public function sendConfirmationEmail(Subscriber $subscriber)
     {
-        return Mail::to($email)->send(new ConfirmEmail($email, $token));
+        return Mail::to($subscriber->email)->send(new ConfirmEmail($subscriber->email, $subscriber->token));
     }
 }

@@ -26,18 +26,12 @@
 			</div>
 		@endif
 		<div class="form__group">
-			<label class="form__label form__label block">Email</label>
-			<input type="text" name="email" class="form__field form__field block no-border" placeholder="Enter your
-			email
-			address"/>
-		</div>
-		<div class="form__group">
 			<label class="form__label form__label block">Subscribe to country</label>
 			<select class="form__field block no-border select2" name="country[]" multiple>
 				@foreach ($countries as $key => $value)
 					<option value="{{$key}}"> {{$value}}</option>
 				@endforeach
-			<select>
+				<select>
 		</div>
 		<div class="form__group no-margin-bottom">
 			<label class="form__label form__label block">Subscribe to corporate group</label>
@@ -45,7 +39,7 @@
 				@foreach ($corporate_groups as $corporate_group)
 					<option value="{{$corporate_group}}"> {{$corporate_group}}</option>
 				@endforeach
-			<select>
+				<select>
 		</div>
 
 	</div>

@@ -17,10 +17,10 @@ class CreateSubscribersTable extends Migration
         {
             $table->increments('id');
             $table->string('email', 150)->unique();
-            $table->string('country', 150);
-            $table->string('corporate_group');
+            $table->json('group');
             $table->integer('status');
             $table->string('token');
+            $table->string('source');
             $table->timestamps();
         });
     }

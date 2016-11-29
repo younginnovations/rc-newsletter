@@ -296,7 +296,7 @@
 													<table border="0" cellpadding="0" cellspacing="0">
 														<tbody>
 														<tr>
-															<td> <a href="#" target="">Click to confirm your email.</a> </td>
+															<td> <a href="{{route('confirm', [ 'email' => $email, 'token' => $token])}}" target="">Click to confirm your email.</a> </td>
 														</tr>
 														</tbody>
 													</table>

@@ -17,10 +17,7 @@ class CreatePublishedContracts extends Migration
         {
             $table->increments('id');
             $table->string('contract_id', 150);
-            $table->string('contract_name', 150);
-            $table->string('country');
-            $table->string('corporate_group');
-            $table->integer('status');
+            $table->json('metadata');
             $table->timestamps();
         });
     }
