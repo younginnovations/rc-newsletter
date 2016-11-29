@@ -199,10 +199,10 @@
 			<ul class="sidebar-menu" id="nav-accordion">
 
 				<li class="mt">
-					<a class="active" href="{{route('admin.dashboard')}}">
+					<a class="" href="{{route('admin.dashboard')}}">
 						<i class="fa fa-dashboard"></i>
 						<span>Dashboard</span>
-					</a><a class="" href="{{route('published_contract')}}">
+					</a><a class="active" href="{{route('published_contract')}}">
 						<i class="fa fa-dashboard"></i>
 						<span>Published Contracts</span>
 					</a>
@@ -223,7 +223,7 @@
 			<div class="row">
 				<div class="col-lg-9 main-chart">
 					<section class="wrapper">
-						<h3><i class="fa fa-angle-right"></i> Subscribed Users</h3>
+						<h3><i class="fa fa-angle-right"></i> Published Contracts</h3>
 						<div class="row mt">
 							<div class="col-lg-12">
 								<div class="content-panel">
@@ -233,26 +233,18 @@
 											<thead>
 											<tr>
 												<th>Id</th>
-												<th>Email</th>
-												<th>Country</th>
-												<th>Corporate Group</th>
-												<th>Source</th>
-												<th>Status</th>
+												<th>Contract Id</th>
 												<th>Created Time</th>
 												<th>Updated Time</th>
 											</tr>
 											</thead>
 											<tbody>
-											@foreach($subscribers as $subscriber)
+											@foreach($published_contracts as $published_contract)
 												<tr>
-													<td>{{$subscriber->id}}</td>
-													<td>{{$subscriber->email}}</td>
-													<td>{{join(',', $subscriber->group->country)}}</td>
-													<td>{{join(',', $subscriber->group->corporate_group)}}</td>
-													<td>{{$subscriber->source}}</td>
-													<td>{{$subscriber->status}}</td>
-													<td>{{$subscriber->created_at->format('Y-m-d')}}</td>
-													<td>{{$subscriber->updated_at->format('Y-m-d')}}</td>
+													<td>{{$published_contract->id}}</td>
+													<td>{{$published_contract->contract_id}}</td>
+													<td>{{$published_contract->created_at->format('Y-m-d')}}</td>
+													<td>{{$published_contract->updated_at->format('Y-m-d')}}</td>
 												</tr>
 											@endforeach
 											</tbody>

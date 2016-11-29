@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Models\PublishedContract;
 use App\Http\Models\Subscriber;
 use Illuminate\Support\Facades\DB;
 
@@ -25,4 +26,9 @@ class PageController extends Controller
         return view('admin.page.dashboard', compact('subscribers'));
     }
 
+    public function published_contract()
+    {
+        $published_contracts = PublishedContract::get();
+        return view('admin.page.published_contract', compact('published_contracts'));
+    }
 }

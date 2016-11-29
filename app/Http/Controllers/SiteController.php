@@ -102,25 +102,6 @@ class SiteController extends Controller
 
     public function publishPost(Request $request)
     {
-        file_put_contents(public_path('dd.txt'), json_encode($request->all()));
-
-        $data                = [];
-        $data['contract_id'] = $request->input('contract_id');
-        $data['metadata']    = $request->input('metadata');
-
-        try {
-            PublishedContract::create($data);
-
-            return 1;
-        } catch (\Exception $e) {
-            return 0;
-        }
-    }
-
-    public function publish(Request $request)
-    {
-        file_put_contents(public_path('dd.txt'), json_encode($request->all()));
-
         $data                = [];
         $data['contract_id'] = $request->input('contract_id');
         $data['metadata']    = $request->input('metadata');

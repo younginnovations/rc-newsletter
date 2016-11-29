@@ -9,7 +9,7 @@ Route::get('unsubscribe/{email}/{token}', ['as' => 'unsubscribe', 'uses' => 'Sit
 Route::get('setting/{email}/{token}', ['as' => 'setting', 'uses' => 'SiteController@setting']);
 
 Route::post('publish', ['as' => 'publish.post', 'uses' => 'SiteController@publishPost']);
-Route::get('publish/{data}', ['as' => 'publish', 'uses' => 'SiteController@publish']);
+
 /*
 |--------------------------------------------------------------------------
 | Auth
@@ -24,5 +24,8 @@ Route::group(
         Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 
         Route::get('dashboard', ['as' => 'admin.dashboard','uses' => 'PageController@index']);
+
+        Route::get('published_contract', ['as' => 'published_contract', 'uses' =>
+            'PageController@published_contract']);
     }
 );
