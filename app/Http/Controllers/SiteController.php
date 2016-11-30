@@ -102,17 +102,22 @@ class SiteController extends Controller
 
     public function publishPost(Request $request)
     {
-        $data                = [];
-        $data['contract_id'] = $request->input('contract_id');
-        $data['metadata']    = $request->input('metadata');
+        $data                   = [];
+        $data['contract_id']    = $request->input('contract_id');
+        $data['metadata']       = $request->input('metadata');
 
-        try {
-            PublishedContract::create($data);
-
+        $published_contract = PublishedContract::whereRaw("contract_id = ?", [$data['contract_id']])->first();
+        if (is_null($published_contract)) {
+            try {
+                PublishedContract::create($data);
+                return 1;
+            } catch (\Exception $e) {
+                return 0;
+            }
+        } else {
             return 1;
-        } catch (\Exception $e) {
-            return 0;
         }
+
     }
 
     public function unsubscribe()
