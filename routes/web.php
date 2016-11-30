@@ -10,6 +10,10 @@ Route::get('setting/{email}/{token}', ['as' => 'setting', 'uses' => 'SiteControl
 
 Route::post('publish', ['as' => 'publish.post', 'uses' => 'SiteController@publishPost']);
 
+Route::get('newsletter', function(){
+    return view ('email.newsletter');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Auth

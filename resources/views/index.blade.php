@@ -33,7 +33,7 @@
 		</div>
 		<div class="form__group">
 			<label class="form__label form__label block">Subscribe to country</label>
-			<select class="form__field block no-border select2" name="country[]" multiple>
+			<select class="form__field block no-border custom_select" name="country[]" multiple>
 				@foreach ($countries as $key => $value)
 					<option value="{{$key}}"> {{$value}}</option>
 				@endforeach
@@ -41,9 +41,9 @@
 		</div>
 		<div class="form__group no-margin-bottom">
 			<label class="form__label form__label block">Subscribe to corporate group</label>
-			<select class="form__field block no-border select2"  name="corporate_group[]" multiple>
-				@foreach ($corporate_groups as $corporate_group)
-					<option value="{{$corporate_group}}"> {{$corporate_group}}</option>
+			<select class="form__field block no-border custom_select"  name="corporate_group[]" multiple>
+				@foreach ($groups as $group)
+					<option value="{{$group}}"> {{$group}}</option>
 				@endforeach
 			<select>
 		</div>
@@ -57,7 +57,7 @@
 </form>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.select2').select2();
+		$('.custom_select').select2();
 	});
 </script>
 </body>

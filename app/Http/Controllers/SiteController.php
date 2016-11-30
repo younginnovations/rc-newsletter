@@ -25,24 +25,21 @@ class SiteController extends Controller
      */
     public function home()
     {
-        $countries        = [
-            'ALL' => 'All',
-            'TN'  => 'Tunisia',
-            'NP'  => 'Nepal',
-            'US'  => 'USA',
-        ];
-        $corporate_groups = [
-            'All',
-            'John Inc',
-            'Congo Minerals',
-            'Tango Waters',
-        ];
+        $corporate_groups = config('groups');
+        $groups = array();
+        foreach ($corporate_groups as $group) {
+            $groups[$group['name']] = $group['name'];
+        }
+        asort($groups);
+
+        $countries = config('country');
+        asort($countries);
 
         return view(
             'index',
             compact(
                 'countries',
-                'corporate_groups'
+                'groups'
             )
         );
     }
