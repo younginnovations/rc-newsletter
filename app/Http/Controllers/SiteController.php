@@ -50,8 +50,8 @@ class SiteController extends Controller
         $data['source'] = $request->input('source');
         $data['status'] = 0;
         $data['group']  = [
-            'country'         => $request->input('country'),
-            'corporate_group' => $request->input('corporate_group'),
+            'country'         => ($request->input('country') == "" ? [] : $request->input('country')),
+            'corporate_group' => ($request->input('corporate_group') == "" ? [] : $request->input('corporate_group')),
         ];
 
         try {
@@ -152,8 +152,8 @@ class SiteController extends Controller
     {
         $data           = [];
         $data['group']  = [
-            'country'         => $request->input('country'),
-            'corporate_group' => $request->input('corporate_group'),
+            'country'         => ($request->input('country') == "" ? [] : $request->input('country')),
+            'corporate_group' => ($request->input('corporate_group') == "" ? [] : $request->input('corporate_group')),
         ];
         $email = $request->input('email');
         $token = $request->input('token');
