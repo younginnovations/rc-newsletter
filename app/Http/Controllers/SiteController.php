@@ -2,11 +2,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Models\PublishedContract;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Models\Subscriber;
 use App\Services\ConfirmationService;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class SiteController
@@ -117,9 +115,19 @@ class SiteController extends Controller
 
     }
 
-    public function unsubscribe()
+    public function unsubscribe($email, $token)
     {
-
+        $data           = [];
+        $data['email']  = $email;
+        $data['token']  = $token;
+        if ($this->isTokenValid($data['email'], $data['token'])) {
+            //$subscriber = Subscriber::find($data['email']);
+            $subscriber = Subscriber::whereRaw("email = ?", [$data['email']])->first();
+            $subscriber->delete();
+            return view('unsubscribe');
+        } else {
+            return 'Invalid token';
+        }
     }
 
     public function setting($email, $token)

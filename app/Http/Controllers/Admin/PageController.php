@@ -3,7 +3,6 @@
 use App\Http\Controllers\Controller;
 use App\Http\Models\PublishedContract;
 use App\Http\Models\Subscriber;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class PageController

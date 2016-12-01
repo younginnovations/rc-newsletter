@@ -1,7 +1,7 @@
 <?php namespace App\Console\Commands;
 
+use App\Http\Services\CreateEmailService;
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Queue\Queue;
 
 /*
  * Send Email to subscribed users
@@ -15,11 +15,8 @@ class SendEmail extends Command
      * @var string
      */
     protected $name = 'send:email';
-    /**
-     * @var Queue
-     */
-    protected $queue;
 
+    protected $email;
     /**
      * The console command description.
      *
@@ -27,10 +24,10 @@ class SendEmail extends Command
      */
     protected $description = 'Send daily email.';
 
-    public function __construct(Queue $queue)
+    public function __construct(CreateEmailService $email)
     {
         parent::__construct();
-        $this->queue = $queue;
+        $this->email = $email;
     }
 
 
@@ -39,14 +36,9 @@ class SendEmail extends Command
      */
     public function fire()
     {
-        $this->info("File zipped");
-        $data = "yay";
-        $this->queue->push(
-            'App\Services\Queue\SendEmailQueue',
-            $data,
-            'send_email'
-        );
-
+        $this->info("Sending e-mail...");
+        $this->email->create();
+        $this->info("E-mail sent to all subscribers.");
     }
 
 }

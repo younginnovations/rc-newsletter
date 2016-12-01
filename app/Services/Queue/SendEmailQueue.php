@@ -2,16 +2,23 @@
 namespace App\Services\Queue;
 
 
+use App\Http\Services\SendEmailService;
+
 class SendEmailQueue
 {
     /**
      * @var
      */
-    //public $newsletter;
+    public $email;
 
-    public function __construct()
+    /**
+     * SendEmailQueue constructor.
+     *
+     * @param SendEmailService $email
+     */
+    public function __construct(SendEmailService $email)
     {
-        //$this->newsletter = $newsletter;
+        $this->email = $email;
     }
 
     /**
@@ -20,8 +27,7 @@ class SendEmailQueue
      */
     public function fire($job, $data)
     {
-        dd($data);
-        //$this->newsletter->post($data);
+        $this->email->send($data);
         $job->delete();
     }
 }

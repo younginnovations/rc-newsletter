@@ -243,7 +243,8 @@
 															<td align='left'>
 																<div class="contentEditableContainer contentTextEditable">
 																	<div class="contentEditable" align='center'>
-																		<h2>Howdy, there is an update for you.</h2>
+																		<h2>Howdy {{$email}}, there is an update for you
+																			.</h2>
 																	</div>
 																</div>
 															</td>
@@ -258,7 +259,8 @@
 																<div class="contentEditableContainer contentTextEditable">
 																	<div class="contentEditable" align='center'>
 																		<p>
-																			Information here.
+																			{{$contract_name}} is published. Check it
+																			out.
 																			<br>
 																			<br>
 																			Cheers,
@@ -307,9 +309,9 @@
 																					<p style='text-align:left;color:#CCCCCC;font-size:12px;font-weight:normal;line-height:20px;'>
 																						<span style='font-weight:bold;'>Subsite</span>
 																						<br>
-																						<a target="_blank" class='link1'
+																						<a class='link1'
 																						   class='color:#382F2E;'
-																						   href="[UNSUBSCRIBE]">Unsubscribe</a>
+																						   href="{{route('unsubscribe', [ 'email' => $email, 'token' => $token])}}">Unsubscribe</a>
 																					</p>
 																				</div>
 																			</div>

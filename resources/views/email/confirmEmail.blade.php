@@ -320,7 +320,6 @@
 						<tr>
 							<td class="content-block">
 								<span class="apple-link">Company Inc, 3 Abbey Road, San Francisco CA 94102</span>
-								<br> Don't like these emails? <a href="_action">Unsubscribe</a>.
 							</td>
 						</tr>
 					</table>
