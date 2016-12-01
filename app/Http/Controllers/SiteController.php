@@ -121,7 +121,6 @@ class SiteController extends Controller
         $data['email']  = $email;
         $data['token']  = $token;
         if ($this->isTokenValid($data['email'], $data['token'])) {
-            //$subscriber = Subscriber::find($data['email']);
             $subscriber = Subscriber::whereRaw("email = ?", [$data['email']])->first();
             $subscriber->delete();
             return view('unsubscribe');
@@ -132,8 +131,37 @@ class SiteController extends Controller
 
     public function setting($email, $token)
     {
-        if ($subscriber = $this->isTokenValid($email, $token)) {
-            return view('setting');
+        $corporate_groups = config('groups');
+        $groups = array();
+        foreach ($corporate_groups as $group) {
+            $groups[$group['name']] = $group['name'];
+        }
+        asort($groups);
+
+        $countries = config('country');
+        asort($countries);
+
+        if ($this->isTokenValid($email, $token)) {
+            return view('setting', compact('countries', 'groups', 'email', 'token'));
+        } else {
+            return 'This request can not be processed';
+        }
+    }
+
+    public function settingPost(Request $request)
+    {
+        $data           = [];
+        $data['group']  = [
+            'country'         => $request->input('country'),
+            'corporate_group' => $request->input('corporate_group'),
+        ];
+        $email = $request->input('email');
+        $token = $request->input('token');
+
+        if ($this->isTokenValid($email, $token)) {
+            $subscriber = Subscriber::whereRaw("email = ?", [$email])->first();
+            $subscriber->update($data);
+            return view('settingssaved', compact('email'));
         } else {
             return 'This request can not be processed';
         }

@@ -312,6 +312,11 @@
 																						<a class='link1'
 																						   class='color:#382F2E;'
 																						   href="{{route('unsubscribe', [ 'email' => $email, 'token' => $token])}}">Unsubscribe</a>
+																						<a class='link1'
+																						   class='color:#382F2E;'
+																						   href="{{route('setting', [
+																						   'email' => $email, 'token'
+																						    => $token])}}">Settings</a>
 																					</p>
 																				</div>
 																			</div>

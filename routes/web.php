@@ -7,6 +7,7 @@ Route::get('confirm/{email}/{token}', ['as' => 'confirm', 'uses' => 'SiteControl
 Route::get('unsubscribe/{email}/{token}', ['as' => 'unsubscribe', 'uses' => 'SiteController@unsubscribe']);
 
 Route::get('setting/{email}/{token}', ['as' => 'setting', 'uses' => 'SiteController@setting']);
+Route::post('setting', ['as' => 'setting.post', 'uses' => 'SiteController@settingPost']);
 
 Route::post('publish', ['as' => 'publish.post', 'uses' => 'SiteController@publishPost']);
 
