@@ -86,7 +86,7 @@ class SiteController extends Controller
 
             return view('confirm');
         } else {
-            return 'Invalid token';
+            return view('invalid-token');
         }
     }
 

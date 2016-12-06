@@ -5,10 +5,10 @@
 	<title>Subscribe</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-	<link href="{{url('css/style.css')}}" rel="stylesheet"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+	<link href="{{url('css/style.css')}}" rel="stylesheet"/>
 
 </head>
 <body>
@@ -27,9 +27,7 @@
 		@endif
 		<div class="form__group">
 			<label class="form__label form__label block">Email</label>
-			<input type="text" name="email" class="form__field form__field block no-border" placeholder="Enter your
-			email
-			address"/>
+			<input type="text" name="email" class="form__field form__field block no-border" placeholder="Enter your email address"/>
 		</div>
 		<div class="form__group">
 			<label class="form__label form__label block">Subscribe to country</label>
@@ -52,7 +50,7 @@
 	<div class="form__footer text-center">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="hidden" name="source" value="rc">
-		<button class="form__btn btn-default no-border">SUBSCRIBE</button>
+		<button class="form__btn no-border">SUBSCRIBE</button>
 	</div>
 </form>
 <script type="text/javascript">

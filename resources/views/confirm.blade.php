@@ -7,8 +7,8 @@
 </head>
 <body>
 <div class="msg thanks">
-	<div class="msg__title">
-		<img src="#" alt="" /><h1>Thank you for subscribing!!!</h1>
+	<div class="msg__title msg__title--confirmed">
+		<h1><span>&#x2714;</span> Thank you for subscribing!!!</h1>
 	</div>
 	<div class="msg__body">
 		<p>Your e-mail is confirmed.</p>
