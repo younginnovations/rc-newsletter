@@ -19,7 +19,7 @@ class SendEmailService
      */
     public function send($data)
     {
-        return Mail::to($data['email'])->send(new NewsletterEmail($data['email'], $data['contract_name'],
+        return Mail::to($data['email'])->send(new NewsletterEmail($data['email'], $data['contract_names'],
                                                                   $data['token']));
     }
 

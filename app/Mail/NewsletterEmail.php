@@ -11,21 +11,21 @@ class NewsletterEmail extends Mailable
     use Queueable, SerializesModels;
 
     public $email;
-    public $contract_name;
+    public $contract_names;
     public $token;
 
     /**
      * Create a new message instance.
      *
      * @param $email
-     * @param $contract_name
+     * @param $contract_names
      * @param $token
      */
-    public function __construct($email, $contract_name, $token)
+    public function __construct($email, $contract_names, $token)
     {
-        $this->email         = $email;
-        $this->contract_name = $contract_name;
-        $this->token         = $token;
+        $this->email          = $email;
+        $this->contract_names = $contract_names;
+        $this->token          = $token;
     }
 
     /**
