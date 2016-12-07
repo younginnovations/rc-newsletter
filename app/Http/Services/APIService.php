@@ -43,18 +43,6 @@ class APIService
         return sprintf('%s/%s', $host, $request);
     }
 
-    /**
-     * Get Summary
-     *
-     * @return object|null
-     */
-    public function summary()
-    {
-        $resource = 'contracts/summary';
-
-        return $this->apiCall($resource);
-    }
-
     public function countries()
     {
         $endpoint = '/contract/countries';

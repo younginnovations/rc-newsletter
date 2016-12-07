@@ -247,9 +247,9 @@
 												<tr>
 													<td>{{$subscriber->id}}</td>
 													<td>{{$subscriber->email}}</td>
-													<td>{{join(',', $subscriber->group->country)}}</td>
+													<td>{{join(',', $subscriber->country())}}</td>
 													<td>{{join(',', $subscriber->group->corporate_group)}}</td>
-													<td>{{$subscriber->source}}</td>
+													<td>{{$subscriber->source()}}</td>
 													<td>{{$subscriber->status}}</td>
 													<td>{{$subscriber->created_at->format('Y-m-d')}}</td>
 													<td>{{$subscriber->updated_at->format('Y-m-d')}}</td>
