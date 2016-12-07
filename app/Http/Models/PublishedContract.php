@@ -11,6 +11,7 @@ class PublishedContract extends Model
     protected $fillable = [
         'contract_id',
         'metadata',
-        'sent_email'
+        'sent_email',
+        'sent_email_date'
     ];
 }

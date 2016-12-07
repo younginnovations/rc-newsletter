@@ -59,6 +59,7 @@ class CreateEmailService
                     }
                 }
                 $data['sent_email'] = 1;
+                $data['sent_email_date'] = date('Y-m-d');
                 $published_contract = PublishedContract::whereRaw("contract_id = ?", [$published_contract->contract_id])
                                                        ->first();
                 $published_contract->update($data);
