@@ -3,40 +3,32 @@
 <html>
 <head>
 	<title>Subscription System: Login</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 	<link href="{{url('css/style.css')}}" rel="stylesheet"/>
-	<style>
-		body        { padding-top:80px; }
-	</style>
 </head>
 <body>
 <div class="container">
 
-	<div class="col-sm-6 col-sm-offset-3">
+	<div class="login">
 
-		<h1><span class="fa fa-sign-in"></span> Login</h1>
+		<h3 class="login__title"> Login</h3>
 		@if(Session::has('error'))
-			<div class="alert alert-danger alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert">
-					<span aria-hidden="true">&times;</span>
-				</button>
+			<div class="alert alert-danger">
+
 				{{ Session::get('error') }}
 			</div>
 		@endif
-		<form role="form" action="{{route('login.post')}}" method="post">
-			<div class="form-group">
+		<form role="form" class="login__form" action="{{route('login.post')}}" method="post">
+			<div class="form__group">
 				<label>Email</label>
-				<input type="text" class="form-control" name="email">
+				<input type="text" name="email">
 			</div>
-			<div class="form-group">
+			<div class="form__group">
 				<label>Password</label>
-				<input type="password" class="form-control" name="password">
+				<input type="password" name="password">
 			</div>
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			<button type="submit" class="btn btn-warning btn-lg">Login</button>
+			<button type="submit">Login</button>
 		</form>
-	<hr>
 	</div>
 
 </div>

@@ -51,16 +51,16 @@ ul {
 }
 
 .form__body {
-  padding: 35px;
+  padding: 45px;
 }
 
 .form__footer {
-  padding: 15px 35px 35px;
+  padding: 0px 35px 35px;
 }
 
 .form__group {
   clear: both;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
 .form__label {
@@ -71,8 +71,8 @@ ul {
 
 .form__field {
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  height: 45px;
+  line-height: 45px;
   background: #f3f3f3;
   padding: 0 15px;
   color: #555;
@@ -98,8 +98,8 @@ select {
   padding: 0 25px;
   background: #555;
   color: #fff;
-  font-size: 18px;
-  line-height: 50px;
+  font-size: 14px;
+  line-height: 45px;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
@@ -144,7 +144,7 @@ select {
 }
 
 .msg__title--invalid h1 {
-  color: #ff5c5c;
+  color: #ff4242;
 }
 
 .msg__title--confirmed h1 {
@@ -154,6 +154,46 @@ select {
 .msg__body {
   font-size: 18px;
   line-height: 30px;
+  margin-top: 10px;
+}
+
+.msg__body p {
+  margin: 0;
+}
+
+.msg__actions {
+  margin-top: 25px;
+}
+
+.msg__actions a {
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  background: #ff4242;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 14px;
+  margin-right: 15px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.msg__actions a:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.msg__actions a:active {
+  -webkit-transform: scale(0.95);
+  transform: scale(0.95);
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.msg__actions a.yes {
+  background: #00C12C;
 }
 
 .msg__footer {
@@ -176,6 +216,45 @@ select {
   top: 2px;
 }
 
+.selectCountry .select2-container {
+  width: 77% !important;
+}
+
+.selectCountry .all {
+  width: 20%;
+  display: inline-block;
+  float: right;
+  background: #f2f2f2;
+  height: 45px;
+}
+
+.selectCountry .all .or {
+  display: inline-block;
+  width: 38px;
+  height: 38px;
+  position: relative;
+  left: -27px;
+  top: 3px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  border-radius: 50%;
+  background: #646464;
+  border: 5px solid #fff;
+}
+
+.selectCountry .all label {
+  position: relative;
+  top: 6px;
+  font-weight: normal;
+}
+
+.selectCountry .all label input {
+  margin-right: 5px;
+  vertical-align: top;
+}
+
 /******
 ******* SELECT2 OVERRIDES
 ******/
@@ -183,7 +262,7 @@ select {
   background: #f2f2f2;
   border: none;
   border-radius: 0;
-  height: 50px;
+  height: 45px;
   line-height: 28px;
   padding: 5px 15px;
 }
@@ -208,9 +287,73 @@ select {
   border-top: 1px solid #e9e9e9;
 }
 
+.select2-container--default.select2-container--disabled .select2-selection--multiple {
+  background-color: #f2f2f2;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /******
 ******* END OF SELECT2 OVERRIDES
 ******/
+
+.login {
+  width: 350px;
+  margin: 50px auto;
+  background: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.login__title {
+  font-size: 18px;
+  background: #ddd;
+  padding: 15px;
+  margin: 0;
+}
+
+.login__form {
+  padding: 25px;
+}
+
+.login__form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login__form input {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  background: #f2f2f2;
+  border: none;
+  font-size: 14px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.login__form input:focus {
+  outline: none;
+}
+
+.login__form button {
+  padding: 10px 15px;
+  border: none;
+  background: #00C12C;
+  color: #fff;
+  font-size: 14px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.login__form button:focus {
+  outline: none;
+}
+
+.login__form button:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
 
 #container {
   height: 100vh;
@@ -228,6 +371,7 @@ header {
 }
 
 header .sidebar-toggle-btn {
+  display: inline-block;
   padding: 0 15px;
   cursor: pointer;
 }
@@ -263,6 +407,8 @@ header .logout-btn:hover {
   height: 100%;
   position: relative;
   padding-left: 260px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .nav-collapse {
@@ -275,11 +421,14 @@ header .logout-btn:hover {
   overflow-y: scroll;
   background: #d7dee4;
   padding: 15px 0;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .sidebar-menu li > a {
+  width: 260px;
   display: block;
-  padding: 15px 35px;
+  padding: 15px 40px;
   text-decoration: none;
   color: #444;
   font-size: 14px;
@@ -298,12 +447,37 @@ header .logout-btn:hover {
   position: absolute;
   top: 49%;
   left: 15px;
+  font-size: 16px;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
+.sidebar-menu li > a span {
+  position: relative;
+  left: 0;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.nav-collapse.collapsed {
+  width: 45px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.nav-collapse.collapsed .sidebar-menu li > a span {
+  opacity: 0;
+  left: -80%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
 .content {
   padding: 15px;
+}
+
+.content-wrapper.wide {
+  padding-left: 45px;
 }
 
 .content__title {

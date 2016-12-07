@@ -8,10 +8,14 @@
 <body>
 <div class="msg thanks">
     <div class="msg__title">
-        <h1>You have successfully un-subscribed !!!</h1>
+        <h1>Confirm un-subscription!</h1>
     </div>
     <div class="msg__body">
-        <p>Good luck ahead.</p>
+        <p>Are you sure you want to un-subscribe?</p>
+        <div class="msg__actions">
+            <a href="#">No</a>
+            <a href="#" class="yes">Yes</a>
+        </div>
     </div>
 </div>
 </body>

@@ -32,7 +32,7 @@
                 </li>
                 <li>
                     <a class="" href="{{route('published_contract')}}">
-                        <i class="fa fa-dashboard"></i>
+                        <i class="fa fa-file-text"></i>
                         <span>Published Contracts</span>
                     </a>
                 </li>

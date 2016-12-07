@@ -115,18 +115,19 @@ class SiteController extends Controller
 
     }
 
-    public function unsubscribe($email, $token)
+    public function unsubscribe()
     {
-        $data           = [];
-        $data['email']  = $email;
-        $data['token']  = $token;
-        if ($this->isTokenValid($data['email'], $data['token'])) {
-            $subscriber = Subscriber::whereRaw("email = ?", [$data['email']])->first();
-            $subscriber->delete();
-            return view('unsubscribe');
-        } else {
-            return 'Invalid token';
-        }
+        return view('unsubscribe');
+//        $data           = [];
+//        $data['email']  = $email;
+//        $data['token']  = $token;
+//        if ($this->isTokenValid($data['email'], $data['token'])) {
+//            $subscriber = Subscriber::whereRaw("email = ?", [$data['email']])->first();
+//            $subscriber->delete();
+//            return view('unsubscribe');
+//        } else {
+//            return 'Invalid token';
+//        }
     }
 
     public function setting($email, $token)
