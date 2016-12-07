@@ -55,5 +55,29 @@ class APIService
         return $this->apiCall($resource);
     }
 
+    public function countries()
+    {
+        $endpoint = '/contract/countries';
+        return $this->getFromRcApi($endpoint)->results;
+    }
+
+    public function corporate_group()
+    {
+        $endpoint = '/contract/attributes';
+        return $this->getFromRcApi($endpoint)->corporate_grouping;
+    }
+
+    public function getFromRcApi($endpoint)
+    {
+        $baseUrl = $this->site->rcApiUrl();
+        try {
+            $client      = new Client(['base_url' => $baseUrl]);
+            $request = $client->get($baseUrl.$endpoint);
+            $data = json_decode($request->getBody()->getContents());
+            return $data;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 
 }
