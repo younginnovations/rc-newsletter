@@ -144,11 +144,11 @@ select {
 }
 
 .msg__title--invalid h1 {
-  color: #ff4242;
+  color: #ff5f5f;
 }
 
 .msg__title--confirmed h1 {
-  color: #00C12C;
+  color: #59d05e;
 }
 
 .msg__body {
@@ -216,11 +216,11 @@ select {
   top: 2px;
 }
 
-.selectCountry .select2-container {
+.select2-container {
   width: 77% !important;
 }
 
-.selectCountry .all {
+.all {
   width: 20%;
   display: inline-block;
   float: right;
@@ -228,7 +228,7 @@ select {
   height: 45px;
 }
 
-.selectCountry .all .or {
+.all .or {
   display: inline-block;
   width: 38px;
   height: 38px;
@@ -244,13 +244,13 @@ select {
   border: 5px solid #fff;
 }
 
-.selectCountry .all label {
+.all label {
   position: relative;
   top: 6px;
   font-weight: normal;
 }
 
-.selectCountry .all label input {
+.all label input {
   margin-right: 5px;
   vertical-align: top;
 }
@@ -291,6 +291,10 @@ select {
   background-color: #f2f2f2;
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  margin-top: 3px;
 }
 
 /******

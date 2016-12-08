@@ -2,19 +2,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Models\PublishedContract;
+use App\Http\Services\APIService;
 use Illuminate\Http\Request;
 use App\Http\Models\Subscriber;
 use App\Services\ConfirmationService;
 
 /**
  * Class SiteController
+ * @property APIService api
  * @package App\Http\Controllers
  */
 class SiteController extends Controller
 {
-    public function __construct()
+    public function __construct(APIService $api)
     {
-
+        $this->api = $api;
     }
 
     /**
@@ -23,14 +25,14 @@ class SiteController extends Controller
      */
     public function home()
     {
-        $corporate_groups = config('groups');
-        $groups = array();
-        foreach ($corporate_groups as $group) {
-            $groups[$group['name']] = $group['name'];
-        }
+        $groups = $this->api->corporate_group();
         asort($groups);
 
-        $countries = config('country');
+        $countries_config = config('country');
+        $countries_api = $this->api->countries();
+        foreach ($countries_api as $country_api) {
+            $countries[strtoupper($country_api->code)] = $countries_config[strtoupper($country_api->code)];
+        }
         asort($countries);
 
         return view(
@@ -115,19 +117,18 @@ class SiteController extends Controller
 
     }
 
-    public function unsubscribe()
+    public function unsubscribe($email, $token)
     {
-        return view('unsubscribe');
-//        $data           = [];
-//        $data['email']  = $email;
-//        $data['token']  = $token;
-//        if ($this->isTokenValid($data['email'], $data['token'])) {
-//            $subscriber = Subscriber::whereRaw("email = ?", [$data['email']])->first();
-//            $subscriber->delete();
-//            return view('unsubscribe');
-//        } else {
-//            return 'Invalid token';
-//        }
+        $data           = [];
+        $data['email']  = $email;
+        $data['token']  = $token;
+        if ($this->isTokenValid($data['email'], $data['token'])) {
+            $subscriber = Subscriber::whereRaw("email = ?", [$data['email']])->first();
+            $subscriber->delete();
+            return view('unsubscribe');
+        } else {
+            return 'Invalid token';
+        }
     }
 
     public function setting($email, $token)

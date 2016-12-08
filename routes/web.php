@@ -4,8 +4,7 @@ Route::get('/', ['as' => 'home', 'uses' => 'SiteController@home']);
 
 Route::post('subscribe', ['as' => 'subscribe', 'uses' => 'SiteController@subscribe']);
 Route::get('confirm/{email}/{token}', ['as' => 'confirm', 'uses' => 'SiteController@confirm']);
-//Route::get('unsubscribe/{email}/{token}', ['as' => 'unsubscribe', 'uses' => 'SiteController@unsubscribe']);
-Route::get('unsubscribe', ['as' => 'unsubscribe', 'uses' => 'SiteController@unsubscribe']);
+Route::get('unsubscribe/{email}/{token}', ['as' => 'unsubscribe', 'uses' => 'SiteController@unsubscribe']);
 
 Route::get('setting/{email}/{token}', ['as' => 'setting', 'uses' => 'SiteController@setting']);
 Route::post('setting', ['as' => 'setting.post', 'uses' => 'SiteController@settingPost']);

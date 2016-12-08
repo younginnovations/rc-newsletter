@@ -29,7 +29,7 @@
 			<label class="form__label form__label block">Email</label>
 			<input type="text" name="email" class="form__field form__field block no-border" placeholder="Enter your email address"/>
 		</div>
-		<div class="form__group selectCountry">
+		<div class="form__group selectWrapper">
 			<label class="form__label form__label block">Subscribe to country</label>
 
 			<select class="form__field block no-border custom_select" name="country[]" multiple>
@@ -42,13 +42,17 @@
 				<label><input type="checkbox"> All</label>
 			</div>
 		</div>
-		<div class="form__group no-margin-bottom">
+		<div class="form__group selectWrapper no-margin-bottom">
 			<label class="form__label form__label block">Subscribe to corporate group</label>
 			<select class="form__field block no-border custom_select"  name="corporate_group[]" multiple>
 				@foreach ($groups as $group)
 					<option value="{{$group}}"> {{$group}}</option>
 				@endforeach
-			<select>
+			</select>
+			<div class="all">
+				<span class="or">or</span>
+				<label><input type="checkbox"> All</label>
+			</div>
 		</div>
 
 	</div>
@@ -62,21 +66,21 @@
 	$(document).ready(function(){
 		$('.custom_select').select2();
 
-		$(".selectCountry select").on("change", function(){
+		$(".selectWrapper select").on("change", function(){
 			console.log($(this).val());
 			if($(this).val().length > 0) {
-				$(".selectCountry input[type='checkbox']").attr('disabled', true).trigger("change");
+				$(this).parents(".selectWrapper").find("input[type='checkbox']").attr('disabled', true).trigger("change");
 			}
 			else{
-				$(".selectCountry input[type='checkbox']").attr('disabled', false).trigger("change");
+				$(this).parents(".selectWrapper").find("input[type='checkbox']").attr('disabled', false).trigger("change");
 			}
 		})
 
-		$(".selectCountry input").on("click", function(){
+		$(".selectWrapper input").on("click", function(){
 			if($(this).is(":checked")){
-				$(".selectCountry select").attr("disabled", true).trigger("change")
+				$(this).parents(".selectWrapper").find("select").attr("disabled", true).trigger("change")
 			}else{
-				$(".selectCountry select").attr("disabled", false).trigger("change")
+				$(this).parents(".selectWrapper").find("select").attr("disabled", false).trigger("change")
 			}
 		})
 	});

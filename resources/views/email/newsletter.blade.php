@@ -259,7 +259,8 @@
 																<div class="contentEditableContainer contentTextEditable">
 																	<div class="contentEditable" align='center'>
 																		<p>
-																			{{$contract_name}} is published. Check it
+																			{{join(',', $contract_names)}} is/are
+																			published. Check it
 																			out.
 																			<br>
 																			<br>

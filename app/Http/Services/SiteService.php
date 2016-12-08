@@ -28,4 +28,10 @@ class SiteService
     {
         return trim($this->getEnv('ADMIN_API_URL'), '/');
     }
+
+    public function rcApiUrl()
+    {
+        return trim($this->getEnv('RC_API_URL'), '/');
+    }
+
 }

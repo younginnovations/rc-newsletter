@@ -43,17 +43,29 @@ class APIService
         return sprintf('%s/%s', $host, $request);
     }
 
-    /**
-     * Get Summary
-     *
-     * @return object|null
-     */
-    public function summary()
+    public function countries()
     {
-        $resource = 'contracts/summary';
-
-        return $this->apiCall($resource);
+        $endpoint = '/contract/countries';
+        return $this->getFromRcApi($endpoint)->results;
     }
 
+    public function corporate_group()
+    {
+        $endpoint = '/contract/attributes';
+        return $this->getFromRcApi($endpoint)->corporate_grouping;
+    }
+
+    public function getFromRcApi($endpoint)
+    {
+        $baseUrl = $this->site->rcApiUrl();
+        try {
+            $client      = new Client(['base_url' => $baseUrl]);
+            $request = $client->get($baseUrl.$endpoint);
+            $data = json_decode($request->getBody()->getContents());
+            return $data;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 
 }
