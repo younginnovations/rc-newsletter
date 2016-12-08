@@ -23,7 +23,7 @@ class CreateEmailService
         $published_contracts = PublishedContract::get();
         $subscribers         = Subscriber::get();
         foreach ($subscribers as $subscriber) {
-            $dataForEmail = array();
+            $dataForEmail = [];
 
             $country_of_subscriber         = $subscriber->group->country;
             $corporate_group_of_subscriber = $subscriber->group->corporate_group;
@@ -36,13 +36,13 @@ class CreateEmailService
                     if (in_array($country_of_published_contract, $country_of_subscriber)) {
                         if (!array_key_exists($published_contract->metadata->open_contracting_id, $dataForEmail)) {
                             $dataForEmail[$published_contract->metadata->open_contracting_id] =
-                                $published_contract->metadata->contract_name;
+                                $published_contract;
                         }
                     }
                     if (in_array($corporate_group_of_published_contract, $corporate_group_of_subscriber)) {
                         if (!array_key_exists($published_contract->metadata->open_contracting_id, $dataForEmail)) {
                             $dataForEmail[$published_contract->metadata->open_contracting_id] =
-                                $published_contract->metadata->contract_name;
+                                $published_contract;
                         }
                     }
                 }
@@ -102,9 +102,9 @@ class CreateEmailService
 //            'token'         => $token,
 //        ];
         $data = [
-            'email'          => $email,
-            'contract_names' => $dataForEmail,
-            'token'          => $token
+            'email'               => $email,
+            'published_contracts' => $dataForEmail,
+            'token'               => $token,
         ];
         $this->queue->push(
             'App\Services\Queue\SendEmailQueue',
