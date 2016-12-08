@@ -8,7 +8,7 @@
 <body>
 	<div class="msg thanks">
 		<div class="msg__title">
-			<img src="#" alt="" /><h1>Thank you for subscribing!!!</h1>
+			<h1><span>&#9786;</span>Thank you for subscribing!!!</h1>
 		</div>
 		<div class="msg__body">
 			<p>Please check your email for confirmation.</p>
