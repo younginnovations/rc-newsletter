@@ -4,6 +4,9 @@ namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed status
+ */
 class Subscriber extends Model
 {
     protected $casts = ['group' => 'object'];
@@ -40,5 +43,16 @@ class Subscriber extends Model
             return $config[$code];
         }
         return $code;
+    }
+
+    public function status()
+    {
+        $status = $this->status;
+
+        if ($status) {
+            return "Confirmed";
+        } else {
+            return "<i style='color:#ff5f5f'>Not confirmed</i>";
+        }
     }
 }

@@ -13,8 +13,8 @@
     <div class="msg__body">
         <p>Are you sure you want to un-subscribe?</p>
         <div class="msg__actions">
-            <a href="#">No</a>
-            <a href="#" class="yes">Yes</a>
+            <a href="{{route('unsubscribe')}}" class="yes">Yes</a>
+            <a href="http://resourcecontracts.org">Goto <span> resourcecontracts.org <i> &#x2192;</i></span></a>
         </div>
     </div>
 </div>

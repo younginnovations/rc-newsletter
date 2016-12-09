@@ -28,12 +28,7 @@ class SiteController extends Controller
         $groups = $this->api->corporate_group();
         asort($groups);
 
-        $countries_config = config('country');
-        $countries_api = $this->api->countries();
-        foreach ($countries_api as $country_api) {
-            $countries[strtoupper($country_api->code)] = $countries_config[strtoupper($country_api->code)];
-        }
-        asort($countries);
+        $countries = $this->getCountryList();
 
         return view(
             'index',
@@ -44,6 +39,18 @@ class SiteController extends Controller
         );
     }
 
+    public function getCountryList()
+    {
+        $countries_config = config('country');
+        $countries_api = $this->api->countries();
+        $countries = [];
+        foreach ($countries_api as $country_api) {
+            $countries[strtoupper($country_api->code)] = $countries_config[strtoupper($country_api->code)];
+        }
+        asort($countries);
+        return $countries;
+    }
+
     public function subscribe(Request $request, ConfirmationService $confirm)
     {
         $data           = [];
@@ -52,8 +59,9 @@ class SiteController extends Controller
         $data['source'] = $request->input('source');
         $data['status'] = 0;
         $data['group']  = [
-            'country'         => ($request->input('country') == "" ? [] : $request->input('country')),
-            'corporate_group' => ($request->input('corporate_group') == "" ? [] : $request->input('corporate_group')),
+            'country'         => $this->isAllSelected($request->input('all_country'), $request->input('country')),
+            'corporate_group' => $this->isAllSelected($request->input('all_corporate_group'), $request->input
+            ('corporate_group')),
         ];
 
         try {
@@ -63,6 +71,16 @@ class SiteController extends Controller
             return view('thanks');
         } catch (\Exception $e) {
             return redirect()->route('home')->withInput()->with('message', 'This email is already subscribed !');
+        }
+    }
+
+    public function isAllSelected($name, $list)
+    {
+        if ($name){
+            return ["ALL"];
+        } else {
+            $list = ($list == "") ? [] : $list;
+            return $list;
         }
     }
 
@@ -117,6 +135,18 @@ class SiteController extends Controller
 
     }
 
+    public function confirmUnsubscribe($email, $token)
+    {
+        $data           = [];
+        $data['email']  = $email;
+        $data['token']  = $token;
+        if ($this->isTokenValid($data['email'], $data['token'])) {
+            return view('confirm-unsubscribe');
+        } else {
+            return view('invalid-token');
+        }
+    }
+
     public function unsubscribe($email, $token)
     {
         $data           = [];
@@ -127,7 +157,7 @@ class SiteController extends Controller
             $subscriber->delete();
             return view('unsubscribe');
         } else {
-            return 'Invalid token';
+            return view('invalid-token');
         }
     }
 

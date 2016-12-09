@@ -39,7 +39,7 @@
 			</select>
 			<div class="all">
 				<span class="or">or</span>
-				<label><input type="checkbox"> All</label>
+				<label><input type="checkbox" name="all_country"> All</label>
 			</div>
 		</div>
 		<div class="form__group selectWrapper no-margin-bottom">
@@ -51,7 +51,7 @@
 			</select>
 			<div class="all">
 				<span class="or">or</span>
-				<label><input type="checkbox"> All</label>
+				<label><input type="checkbox" name="all_corporate_group"> All</label>
 			</div>
 		</div>
 

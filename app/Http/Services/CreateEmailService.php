@@ -23,25 +23,28 @@ class CreateEmailService
         $published_contracts = PublishedContract::get();
         $subscribers         = Subscriber::get();
         foreach ($subscribers as $subscriber) {
-            $dataForEmail = [];
+            $dataForEmail = collect([]);
 
             $country_of_subscriber         = $subscriber->group->country;
             $corporate_group_of_subscriber = $subscriber->group->corporate_group;
+            $source_of_subscriber          = $subscriber->source;
 
             foreach ($published_contracts as $published_contract) {
-                if (!($published_contract->sent_email)) {
+                if (!($published_contract->sent_email) && ($published_contract->metadata->category[0] ==
+                        $source_of_subscriber)) {
                     $country_of_published_contract         = $published_contract->metadata->country->code;
                     $corporate_group_of_published_contract = $published_contract->metadata->company[0]->parent_company;
 
-                    if (in_array($country_of_published_contract, $country_of_subscriber)) {
-                        if (!array_key_exists($published_contract->metadata->open_contracting_id, $dataForEmail)) {
-                            $dataForEmail[$published_contract->metadata->open_contracting_id] =
+                    if (in_array($country_of_published_contract, $country_of_subscriber) or ($country_of_subscriber[0]
+                            == "ALL")) {
+                        if (!($dataForEmail->contains($published_contract))) {
+                            $dataForEmail[] =
                                 $published_contract;
                         }
                     }
-                    if (in_array($corporate_group_of_published_contract, $corporate_group_of_subscriber)) {
-                        if (!array_key_exists($published_contract->metadata->open_contracting_id, $dataForEmail)) {
-                            $dataForEmail[$published_contract->metadata->open_contracting_id] =
+                    if (in_array($corporate_group_of_published_contract, $corporate_group_of_subscriber) or ($corporate_group_of_subscriber[0] == "ALL")) {
+                        if (!($dataForEmail->contains($published_contract))) {
+                            $dataForEmail[] =
                                 $published_contract;
                         }
                     }
@@ -59,48 +62,10 @@ class CreateEmailService
                 $this->sendToQueue($subscriber->email, $dataForEmail, $subscriber->token);
             }
         }
-
-        //published_contract loop
-//        foreach ($published_contracts as $published_contract) {
-//            if (!($published_contract->sent_email)) {
-//                $country_of_published_contract         = $published_contract->metadata->country->code;
-//                $corporate_group_of_published_contract = $published_contract->metadata->company[0]->parent_company;
-//
-//                foreach ($subscribers as $subscriber) {
-//                    $country_of_subscriber         = $subscriber->group->country;
-//                    $corporate_group_of_subscriber = $subscriber->group->corporate_group;
-//
-//                    if (in_array($country_of_published_contract, $country_of_subscriber)) {
-//                        $this->sendToQueue(
-//                            $subscriber->email,
-//                            $published_contract->metadata->contract_name,
-//                            $subscriber->token
-//                        );
-//                    }
-//                    if (in_array($corporate_group_of_published_contract, $corporate_group_of_subscriber)) {
-//                        $this->sendToQueue(
-//                            $subscriber->email,
-//                            $published_contract->metadata->contract_name,
-//                            $subscriber->token
-//                        );
-//                    }
-//                }
-//                $data['sent_email'] = 1;
-//                $data['sent_email_date'] = date('Y-m-d');
-//                $published_contract = PublishedContract::whereRaw("contract_id = ?", [$published_contract->contract_id])
-//                                                       ->first();
-//                $published_contract->update($data);
-//            }
-//        }
     }
 
     public function sendToQueue($email, $dataForEmail, $token)
     {
-//        $data = [
-//            'email'         => $email,
-//            'contract_name' => $contract_name,
-//            'token'         => $token,
-//        ];
         $data = [
             'email'               => $email,
             'published_contracts' => $dataForEmail,

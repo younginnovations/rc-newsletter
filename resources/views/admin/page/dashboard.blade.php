@@ -10,8 +10,7 @@
 				<th>Corporate Group</th>
 				<th>Source</th>
 				<th>Status</th>
-				<th>Created Time</th>
-				<th>Updated Time</th>
+				<th>Subscribed Date</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -22,9 +21,8 @@
 					<td>{{join(',', $subscriber->country())}}</td>
 					<td>{{join(',', $subscriber->group->corporate_group)}}</td>
 					<td>{{$subscriber->source()}}</td>
-					<td>{{$subscriber->status}}</td>
+					<td>{!! $subscriber->status() !!}</td>
 					<td>{{$subscriber->created_at->format('Y-m-d')}}</td>
-					<td>{{$subscriber->updated_at->format('Y-m-d')}}</td>
 				</tr>
 			@endforeach
 			</tbody>

@@ -6,17 +6,14 @@
 </head>
 <body>
 
-<table style="font-family: arial;max-width: 650px;margin: 0 auto;color:#333;border-collapse:collapse;border:0">
+<table style="font-family: arial;background:#f2f2f2;width: 100%;margin: 0 auto;color:#333;border-collapse:collapse;
+border:0">
 	<tr>
 		<td style="border:0;padding:0;">
-			<div style="background: #555;padding: 35px;color:#fff;">
-				<h2 style="margin: 0;">Resource Contracts</h2>
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<td style="border:0;padding:0;">
-			<div style="font-size:14px;padding: 25px;background: #f2f2f2;">
+			<div style="font-size:14px;padding: 25px;max-width:400px;margin:0 auto;">
+				<div style="background: #555;padding: 35px;color:#fff;">
+					<h2 style="margin: 0;">Resource Contracts</h2>
+				</div>
 				<div style="padding: 25px 25px 10px 25px;background: #fff;border: 1px solid #e5e5e5;border-radius: 3px;max-width: 650px;margin: 0 auto;">
 					<p>Hi {{$email}},</p>
 					<p>This is a confirmation email from subsite.</p>
