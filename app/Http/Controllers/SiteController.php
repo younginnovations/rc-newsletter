@@ -141,7 +141,7 @@ class SiteController extends Controller
         $data['email']  = $email;
         $data['token']  = $token;
         if ($this->isTokenValid($data['email'], $data['token'])) {
-            return view('confirm-unsubscribe');
+            return view('confirm-unsubscribe', compact('email', 'token'));
         } else {
             return view('invalid-token');
         }
@@ -183,9 +183,14 @@ class SiteController extends Controller
     public function settingPost(Request $request)
     {
         $data           = [];
+//        $data['group']  = [
+//            'country'         => ($request->input('country') == "" ? [] : $request->input('country')),
+//            'corporate_group' => ($request->input('corporate_group') == "" ? [] : $request->input('corporate_group')),
+//        ];
         $data['group']  = [
-            'country'         => ($request->input('country') == "" ? [] : $request->input('country')),
-            'corporate_group' => ($request->input('corporate_group') == "" ? [] : $request->input('corporate_group')),
+            'country'         => $this->isAllSelected($request->input('all_country'), $request->input('country')),
+            'corporate_group' => $this->isAllSelected($request->input('all_corporate_group'), $request->input
+            ('corporate_group')),
         ];
         $email = $request->input('email');
         $token = $request->input('token');

@@ -5,10 +5,10 @@
 	<title>Subscribe</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-	<link href="{{url('css/style.css')}}" rel="stylesheet"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+	<link href="{{url('css/style.css')}}" rel="stylesheet"/>
 
 </head>
 <body>
@@ -25,21 +25,29 @@
 				{{ Session::get('message') }}
 			</div>
 		@endif
-		<div class="form__group">
+		<div class="form__group selectWrapper">
 			<label class="form__label form__label block">Subscribe to country</label>
 			<select class="form__field block no-border custom_select" name="country[]" multiple>
 				@foreach ($countries as $key => $value)
 					<option value="{{$key}}"> {{$value}}</option>
 				@endforeach
-				<select>
+			<select>
+			<div class="all">
+				<span class="or">or</span>
+				<label><input type="checkbox" name="all_country"> All</label>
+			</div>
 		</div>
-		<div class="form__group no-margin-bottom">
+		<div class="form__group selectWrapper no-margin-bottom">
 			<label class="form__label form__label block">Subscribe to corporate group</label>
 			<select class="form__field block no-border custom_select"  name="corporate_group[]" multiple>
 				@foreach ($groups as $group)
 					<option value="{{$group}}"> {{$group}}</option>
 				@endforeach
-				<select>
+			<select>
+			<div class="all">
+				<span class="or">or</span>
+				<label><input type="checkbox" name="all_corporate_group"> All</label>
+			</div>
 		</div>
 
 	</div>
@@ -54,6 +62,24 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.custom_select').select2();
+
+		$(".selectWrapper select").on("change", function(){
+			console.log($(this).val());
+			if($(this).val().length > 0) {
+				$(this).parents(".selectWrapper").find("input[type='checkbox']").attr('disabled', true).trigger("change");
+			}
+			else{
+				$(this).parents(".selectWrapper").find("input[type='checkbox']").attr('disabled', false).trigger("change");
+			}
+		})
+
+		$(".selectWrapper input").on("click", function(){
+			if($(this).is(":checked")){
+				$(this).parents(".selectWrapper").find("select").attr("disabled", true).trigger("change")
+			}else{
+				$(this).parents(".selectWrapper").find("select").attr("disabled", false).trigger("change")
+			}
+		})
 	});
 </script>
 </body>

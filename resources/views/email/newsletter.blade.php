@@ -37,8 +37,8 @@
 				@endforeach
 				<div style="text-align:center;padding: 15px 0px 0px 15px;font-size:13px;color:#888;">
 					<p style="margin-bottom:5px;">sent by: Resource Contracts</p>
-					<a href="#" style="color:#888;margin-right: 7px;">settings</a>
-					<a href="#" style="color:#888;">unsubscribe</a>
+					<a href="{{route('setting', [ 'email' => $email, 'token' => $token])}}" style="color:#888;margin-right: 7px;">settings</a>
+					<a href="{{route('confirm-unsubscribe', [ 'email' => $email, 'token' => $token])}}" style="color:#888;">unsubscribe</a>
 				</div>
 			</div>
 		</td>

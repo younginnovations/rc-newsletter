@@ -8,7 +8,10 @@
 <body>
 <div class="msg thanks">
 	<div class="msg__title">
-		<img src="#" alt="" /><h1>{{$email}}, Your settings are saved successfully.</h1>
+		<img src="#" alt="" />
+		<h1>{{$email}}, <br>
+			Your settings are saved successfully.
+		</h1>
 	</div>
 </div>
 </body>

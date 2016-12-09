@@ -15,7 +15,7 @@
 	</div>
 
 	<div class="msg__footer">
-		<a href="#">Goto <span> resourcecontracts.org <i> &#x2192;</i></span></a>
+		<a href="http://resourcecontracts.org">Goto <span> resourcecontracts.org <i> &#x2192;</i></span></a>
 	</div>
 </div>
 </body>

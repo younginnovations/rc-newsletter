@@ -5,18 +5,22 @@
 		<table class="table table-bordered table-striped table-condensed">
 			<thead>
 			<tr>
-				<th>Id</th>
 				<th>Contract Id</th>
-				<th>Published Time</th>
-				<th>Email Sent Time</th>
+				<th>Contract Name</th>
+				<th>Country</th>
+				<th>Resources</th>
+				<th>Published Date</th>
+				<th>Email Sent Date</th>
 				<th>Sent Email</th>
 			</tr>
 			</thead>
 			<tbody>
 			@foreach($published_contracts as $published_contract)
 				<tr>
-					<td>{{$published_contract->id}}</td>
 					<td>{{$published_contract->contract_id}}</td>
+					<td>{{$published_contract->metadata->contract_name}}</td>
+					<td>{{$published_contract->metadata->country->name}}</td>
+					<td>{{join(', ', $published_contract->metadata->resource)}}</td>
 					<td>{{$published_contract->created_at->format('Y-m-d')}}</td>
 					<td>
 						@if(is_null($published_contract->sent_email_date))

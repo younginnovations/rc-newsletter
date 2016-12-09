@@ -14,7 +14,7 @@
 			<p>Please check your email for confirmation.</p>
 		</div>
 		<div class="msg__footer">
-			<a href="#"><i class="fa fa-angle-left"></i>Return back</a>
+			<a href="http://resourcecontracts.org"><i class="fa fa-angle-left"></i>Return back</a>
 		</div>
 	</div>
 </body>
