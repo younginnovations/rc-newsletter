@@ -14,7 +14,7 @@
         <p>Are you sure you want to un-subscribe?</p>
         <div class="msg__actions">
             <a href="{{route('unsubscribe', [ 'email' => $email, 'token' => $token])}}" class="yes">Yes</a>
-            <a href="http://resourcecontracts.org">Goto <span> resourcecontracts.org <i> &#x2192;</i></span></a>
+            <a href="http://resourcecontracts.org">No</a>
         </div>
     </div>
 </div>

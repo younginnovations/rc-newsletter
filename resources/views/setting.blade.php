@@ -29,24 +29,41 @@
 			<label class="form__label form__label block">Subscribe to country</label>
 			<select class="form__field block no-border custom_select" name="country[]" multiple>
 				@foreach ($countries as $key => $value)
-					<option value="{{$key}}"> {{$value}}</option>
+					@if(in_array($key, $subscribed_country))
+						<option value="{{$key}}" selected> {{$value}}</option>
+					@else
+						<option value="{{$key}}"> {{$value}}</option>
+					@endif
 				@endforeach
 			<select>
 			<div class="all">
 				<span class="or">or</span>
-				<label><input type="checkbox" name="all_country"> All</label>
+				@if(in_array("ALL", $subscribed_country))
+					<label><input type="checkbox" name="all_country" checked="checked"> All</label>
+				@else
+					<label><input type="checkbox" name="all_country"> All</label>
+				@endif
 			</div>
 		</div>
 		<div class="form__group selectWrapper no-margin-bottom">
 			<label class="form__label form__label block">Subscribe to corporate group</label>
 			<select class="form__field block no-border custom_select"  name="corporate_group[]" multiple>
 				@foreach ($groups as $group)
-					<option value="{{$group}}"> {{$group}}</option>
+					@if(in_array($group, $subscribed_corporate_group))
+						<option value="{{$group}}" selected> {{$group}}</option>
+					@else
+						<option value="{{$group}}"> {{$group}}</option>
+					@endif
 				@endforeach
 			<select>
 			<div class="all">
+
 				<span class="or">or</span>
-				<label><input type="checkbox" name="all_corporate_group"> All</label>
+				@if(in_array("ALL", $subscribed_corporate_group))
+					<label><input type="checkbox" name="all_corporate_group" checked="checked"> All</label>
+				@else
+					<label><input type="checkbox" name="all_corporate_group"> All</label>
+				@endif
 			</div>
 		</div>
 
