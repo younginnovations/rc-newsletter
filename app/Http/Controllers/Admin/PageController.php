@@ -27,7 +27,7 @@ class PageController extends Controller
 
     public function published_contract()
     {
-        $published_contracts = PublishedContract::get();
+        $published_contracts = PublishedContract::paginate(25);
         return view('admin.page.published_contract', compact('published_contracts'));
     }
 }

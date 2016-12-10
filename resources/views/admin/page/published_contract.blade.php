@@ -34,6 +34,7 @@
 			@endforeach
 			</tbody>
 		</table>
+		<div class="pagination"> {{ $published_contracts->links() }} </div>
 	</section>
 
 @include('partials/footer')
