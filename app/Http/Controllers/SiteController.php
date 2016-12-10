@@ -55,6 +55,12 @@ class SiteController extends Controller
     public function subscribe(Request $request, ConfirmationService $confirm)
     {
         $data           = [];
+
+        $this->validate($request, [
+            'email' => 'required|email',
+            'source' => 'required'
+        ]);
+
         $data['email']  = $request->input('email');
         $data['token']  = $this->generateToken($data['email']);
         $data['source'] = $request->input('source');
@@ -63,13 +69,9 @@ class SiteController extends Controller
             'country'         => $this->isAllSelected($request->input('all_country'), $request->input('country')),
             'corporate_group' => $this->isAllSelected(
                 $request->input('all_corporate_group'),
-                $request->input
-                (
-                    'corporate_group'
-                )
+                $request->input('corporate_group')
             ),
         ];
-
         try {
             $subscriber = Subscriber::create($data);
             $confirm->sendConfirmationEmail($subscriber);
@@ -85,7 +87,7 @@ class SiteController extends Controller
         if ($name) {
             return ["ALL"];
         } else {
-            $list = ($list == "") ? [] : $list;
+            $list = ($list == "") ? ["ALL"] : $list;
 
             return $list;
         }

@@ -21,7 +21,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $subscribers = Subscriber::get();
+        $subscribers = Subscriber::paginate(50);
         return view('admin.page.dashboard', compact('subscribers'));
     }
 

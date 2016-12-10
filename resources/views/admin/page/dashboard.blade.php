@@ -27,6 +27,7 @@
 			@endforeach
 			</tbody>
 		</table>
+		<div class="pagination"> {{ $subscribers->links() }} </div>
 	</section>
 
 @include('partials/footer')
