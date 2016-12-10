@@ -180,25 +180,16 @@ class SiteController extends Controller
      */
     public function setting($email, $token)
     {
-        $corporate_groups = config('groups');
-        $groups           = [];
-        foreach ($corporate_groups as $group) {
-            $groups[$group['name']] = $group['name'];
-        }
+        $groups = $this->api->corporate_group();
         asort($groups);
 
-        $countries = config('country');
-        asort($countries);
+        $countries = $this->getCountryList();
 
         $subscriber                 = Subscriber::whereRaw("email = ?", [$email])
                                                 ->whereRaw("token = ?", [$token])
                                                 ->first();
         $subscribed_country         = $this->getSubscribedCountry($subscriber);
         $subscribed_corporate_group = $this->getSubscribedCorporateGroup($subscriber);
-
-//        $subscribed_country_list         = $this->getList($subscribed_country);
-//        $subscribed_corporate_group_list = $this->getList($subscribed_corporate_group);
-//        dd($subscribed_country);
 
         if ($this->isTokenValid($email, $token)) {
             return view(

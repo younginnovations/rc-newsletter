@@ -18,7 +18,7 @@
 			@foreach($published_contracts as $published_contract)
 				<tr>
 					<td>{{$published_contract->contract_id}}</td>
-					<td>{{$published_contract->metadata->contract_name}}</td>
+					<td><a href="http://www.resourcecontracts.org/contract/{{$published_contract->metadata->open_contracting_id}}">{{$published_contract->metadata->contract_name}}</a></td>
 					<td>{{$published_contract->metadata->country->name}}</td>
 					<td>{{join(', ', $published_contract->metadata->resource)}}</td>
 					<td>{{$published_contract->created_at->format('Y-m-d')}}</td>

@@ -27,7 +27,7 @@
 		@endif
 		<div class="form__group selectWrapper">
 			<label class="form__label form__label block">Subscribe to country</label>
-			<select class="form__field block no-border custom_select" name="country[]" multiple>
+			<select class="form__field block no-border custom_select" id="country_select" name="country[]" multiple>
 				@foreach ($countries as $key => $value)
 					@if(in_array($key, $subscribed_country))
 						<option value="{{$key}}" selected> {{$value}}</option>
@@ -47,7 +47,8 @@
 		</div>
 		<div class="form__group selectWrapper no-margin-bottom">
 			<label class="form__label form__label block">Subscribe to corporate group</label>
-			<select class="form__field block no-border custom_select"  name="corporate_group[]" multiple>
+			<select class="form__field block no-border custom_select" id="corporate_group_select"
+					name="corporate_group[]" multiple>
 				@foreach ($groups as $group)
 					@if(in_array($group, $subscribed_corporate_group))
 						<option value="{{$group}}" selected> {{$group}}</option>
@@ -88,7 +89,7 @@
 			else{
 				$(this).parents(".selectWrapper").find("input[type='checkbox']").attr('disabled', false).trigger("change");
 			}
-		})
+		});
 
 		$(".selectWrapper input").on("click", function(){
 			if($(this).is(":checked")){
@@ -96,7 +97,24 @@
 			}else{
 				$(this).parents(".selectWrapper").find("select").attr("disabled", false).trigger("change")
 			}
-		})
+		});
+
+		if($(".selectWrapper input[name='all_corporate_group']").is(":checked")){
+			$("#corporate_group_select").attr("disabled", true).trigger("change")
+		};
+
+		if($(".selectWrapper input[name='all_country']").is(":checked")){
+			$("#country_select").attr("disabled", true).trigger("change")
+		};
+
+		if($("#country_select").val().length > 0){
+			$(".selectWrapper input[name='all_country']").attr("disabled", true).trigger("change")
+		};
+
+		if($("#corporate_group_select").val().length > 0){
+			alert($("#corporate_group_select").val());
+			$(".selectWrapper input[name='all_corporate_group']").attr("disabled", true).trigger("change")
+		};
 	});
 </script>
 </body>

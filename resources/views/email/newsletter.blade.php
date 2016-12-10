@@ -22,7 +22,8 @@
 				@foreach($published_contracts as $published_contract)
 					<div style="padding: 25px 25px 10px 25px;background: #fff;border: 1px solid #e5e5e5;border-radius: 3px;max-width: 650px;margin: 0 auto;">
 						<p style="margin-top: 0;"><b>Contract Name:</b>
-							{{$published_contract["metadata"]["contract_name"]}}</p>
+								{{$published_contract["metadata"]["contract_name"]}}
+						</p>
 						<p><b>Country:</b> {{ $published_contract["metadata"]["country"]["name"] }}</p>
 						<p><b>Corporate Group:</b>
 							@if(empty($published_contract["metadata"]["company"][0]["parent_company"]))
@@ -33,6 +34,7 @@
 						</p>
 						<p><b>Resource:</b> {{join(',', $published_contract["metadata"]["resource"])}}</p>
 						<p><b>PDF URL:</b> {{$published_contract["metadata"]["file_url"]}}</p>
+						<a href="http://www.resourcecontracts.org/contract/{{$published_contract["metadata"]["open_contracting_id"]}}"><span> View <i> &#x2192;</i></span></a>
 					</div>
 				@endforeach
 				<div style="text-align:center;padding: 15px 0px 0px 15px;font-size:13px;color:#888;">
