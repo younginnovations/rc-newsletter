@@ -88,7 +88,7 @@
 			else{
 				$(this).parents(".selectWrapper").find("input[type='checkbox']").attr('disabled', false).trigger("change");
 			}
-		})
+		});
 
 		$(".selectWrapper input").on("click", function(){
 			if($(this).is(":checked")){
