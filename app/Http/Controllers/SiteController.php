@@ -30,11 +30,14 @@ class SiteController extends Controller
 
         $countries = $this->getCountryList();
 
+        $email = "";
+
         return view(
             'index',
             compact(
                 'countries',
-                'groups'
+                'groups',
+                'email'
             )
         );
     }
@@ -50,6 +53,24 @@ class SiteController extends Controller
         asort($countries);
 
         return $countries;
+    }
+
+    public function subscribeGet(Request $request)
+    {
+        $email = $request->input('email');
+        $groups = $this->api->corporate_group();
+        asort($groups);
+
+        $countries = $this->getCountryList();
+
+        return view(
+            'index',
+            compact(
+                'countries',
+                'groups',
+                'email'
+            )
+        );
     }
 
     public function subscribe(Request $request, ConfirmationService $confirm)

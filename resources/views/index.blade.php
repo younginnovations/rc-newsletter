@@ -33,7 +33,11 @@
 		@endif
 		<div class="form__group">
 			<label class="form__label form__label block">Email</label>
-			<input type="text" name="email" class="form__field form__field block no-border" placeholder="Enter your email address"/>
+			@if(!is_null($email) && !empty($email))
+				<input type="text" name="email" class="form__field form__field block no-border" value="{{$email}}"/>
+			@else
+				<input type="text" name="email" class="form__field form__field block no-border" placeholder="Enter your email address"/>
+			@endif
 		</div>
 		<div class="form__group selectWrapper">
 			<label class="form__label form__label block">Subscribe to country</label>

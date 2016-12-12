@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', ['as' => 'home', 'uses' => 'SiteController@home']);
-
+Route::get('subscribe', ['as' => 'subscribe.get', 'uses' => 'SiteController@subscribeGet']);
 Route::post('subscribe', ['as' => 'subscribe', 'uses' => 'SiteController@subscribe']);
 Route::get('confirm/{email}/{token}', ['as' => 'confirm', 'uses' => 'SiteController@confirm']);
 
