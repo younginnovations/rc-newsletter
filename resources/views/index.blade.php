@@ -78,7 +78,7 @@
 </form>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.custom_select').select2();
+		$('.custom_select').select2({placeholder:"Click to select"});
 
 		$(".selectWrapper select").on("change", function(){
 			console.log($(this).val());
