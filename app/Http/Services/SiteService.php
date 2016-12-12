@@ -31,7 +31,7 @@ class SiteService
 
     public function rcApiUrl()
     {
-        return trim($this->getEnv('RC_API_URL'), '/');
+        return trim($this->getEnv('ES_API'), '/');
     }
 
 }
