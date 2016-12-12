@@ -18,7 +18,15 @@
 			@foreach($published_contracts as $published_contract)
 				<tr>
 					<td>{{$published_contract->contract_id}}</td>
-					<td><a href="http://www.resourcecontracts.org/contract/{{$published_contract->metadata->open_contracting_id}}">{{$published_contract->metadata->contract_name}}</a></td>
+					<td>
+						@if($published_contract->metadata->category[0] == "rc")
+							<a href="http://www.resourcecontracts.org/contract/{{$published_contract->metadata->open_contracting_id}}">{{$published_contract->metadata->contract_name}}</a>
+						@elseif($published_contract->metadata->category[0] == "olc")
+							<a href="http://www.openlandcontracts.org/contract/{{$published_contract->metadata->open_contracting_id}}">{{$published_contract->metadata->contract_name}}</a>
+						@else
+							{{$published_contract->metadata->contract_name}}
+						@endif
+					</td>
 					<td>{{$published_contract->metadata->country->name}}</td>
 					<td>{{join(', ', $published_contract->metadata->resource)}}</td>
 					<td>{{$published_contract->created_at->format('Y-m-d')}}</td>
