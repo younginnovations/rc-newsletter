@@ -68,7 +68,11 @@
 	</div>
 	<div class="form__footer text-center">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		<input type="hidden" name="source" value="rc">
+		@if(!is_null($source) && !empty($source))
+			<input type="hidden" name="source" value="{{$source}}">
+		@else
+			<input type="hidden" name="source" value="rc">
+		@endif
 		<button class="form__btn no-border">SUBSCRIBE</button>
 	</div>
 </form>
