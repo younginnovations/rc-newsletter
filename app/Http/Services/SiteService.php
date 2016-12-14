@@ -29,6 +29,11 @@ class SiteService
         return trim($this->getEnv('ADMIN_API_URL'), '/');
     }
 
+    /**
+     * Get RC Api Url
+     *
+     * @return string
+     */
     public function rcApiUrl()
     {
         return trim($this->getEnv('ES_API'), '/');

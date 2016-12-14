@@ -46,6 +46,7 @@ class AuthController extends Controller
     {
         $username = $request->input('email');
         $password = $request->input('password');
+
         if ($this->auth->login($username, $password)) {
             return redirect()->route('admin.dashboard');
         }

@@ -2,11 +2,9 @@
 
 use App\Http\Services\CreateEmailService;
 use Illuminate\Console\Command;
-
 /*
  * Send Email to subscribed users
  */
-
 class SendEmail extends Command
 {
     /**
@@ -14,8 +12,12 @@ class SendEmail extends Command
      *
      * @var string
      */
-    protected $name = 'send:email';
-
+    protected $name = 'newsletter:send';
+    /**
+     * The email of subscriber.
+     *
+     * @var string
+     */
     protected $email;
     /**
      * The console command description.
@@ -24,15 +26,19 @@ class SendEmail extends Command
      */
     protected $description = 'Send daily email.';
 
+    /**
+     * SendEmail constructor.
+     *
+     * @param CreateEmailService $email
+     */
     public function __construct(CreateEmailService $email)
     {
         parent::__construct();
         $this->email = $email;
     }
 
-
     /**
-     * Execute bash file
+     * Sends email
      */
     public function fire()
     {
@@ -40,5 +46,4 @@ class SendEmail extends Command
         $this->email->create();
         $this->info("E-mail sent to all subscribers.");
     }
-
 }

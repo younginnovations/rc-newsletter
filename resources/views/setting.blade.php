@@ -112,7 +112,6 @@
 		};
 
 		if($("#corporate_group_select").val().length > 0){
-			alert($("#corporate_group_select").val());
 			$(".selectWrapper input[name='all_corporate_group']").attr("disabled", true).trigger("change")
 		};
 	});

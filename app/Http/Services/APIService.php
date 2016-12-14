@@ -29,7 +29,7 @@ class APIService
     }
 
     /**
-     * Get Api full URL
+     * Get full Url of Api
      *
      * @param $request
      *
@@ -43,29 +43,64 @@ class APIService
         return sprintf('%s/%s', $host, $request);
     }
 
+    /**
+     * Get countries list from RC Api
+     * @return mixed
+     */
     public function countries()
     {
         $endpoint = '/contract/countries';
         return $this->getFromRcApi($endpoint)->results;
     }
 
+    /**
+     * Get corporate group list from RC Api
+     * @return mixed
+     */
     public function corporate_group()
     {
         $endpoint = '/contract/attributes';
-        return $this->getFromRcApi($endpoint)->corporate_grouping;
+        $corporate_group = $this->getFromRcApi($endpoint)->corporate_grouping;
+        asort($corporate_group);
+
+        return $corporate_group;
     }
 
+    /**
+     * Returns country list
+     * @return array
+     */
+    public function getCountryList()
+    {
+        $countries_config = config('country');
+        $countries_api    = $this->countries();
+        $countries        = [];
+
+        foreach ($countries_api as $country_api) {
+            $countries[strtoupper($country_api->code)] = $countries_config[strtoupper($country_api->code)];
+        }
+
+        asort($countries);
+        return $countries;
+    }
+
+    /**
+     * Get data from RC Api
+     *
+     * @param $endpoint
+     *
+     * @return bool|mixed
+     */
     public function getFromRcApi($endpoint)
     {
         $baseUrl = $this->site->rcApiUrl();
         try {
-            $client      = new Client(['base_url' => $baseUrl]);
+            $client  = new Client(['base_url' => $baseUrl]);
             $request = $client->get($baseUrl.$endpoint);
-            $data = json_decode($request->getBody()->getContents());
+            $data    = json_decode($request->getBody()->getContents());
             return $data;
         } catch (\Exception $e) {
             return false;
         }
     }
-
 }

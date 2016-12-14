@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnSentEmailDateInPublishedContractsTable extends Migration
+class CreateContracts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddColumnSentEmailDateInPublishedContractsTable extends Migration
      */
     public function up()
     {
-        Schema::table('published_contracts', function (Blueprint $table) {
-            $table->date('sent_email_date')->nullable();
+        Schema::create('contracts', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->string('contract_id', 150);
+            $table->json('metadata');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddColumnSentEmailDateInPublishedContractsTable extends Migration
      */
     public function down()
     {
-        Schema::table('published_contracts', function (Blueprint $table) {
-            $table->dropColumn('sent_email_date');
-        });
+        //
     }
 }

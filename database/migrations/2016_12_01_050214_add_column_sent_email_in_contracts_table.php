@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnSentEmailInPublishedContractsTable extends Migration
+class AddColumnSentEmailInContractsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddColumnSentEmailInPublishedContractsTable extends Migration
      */
     public function up()
     {
-        Schema::table('published_contracts', function($table) {
+        Schema::table('contracts', function($table) {
             $table->integer('sent_email')->default(0);;
         });
     }
@@ -25,7 +25,7 @@ class AddColumnSentEmailInPublishedContractsTable extends Migration
      */
     public function down()
     {
-        Schema::table('published_contracts', function($table) {
+        Schema::table('contracts', function($table) {
             $table->dropColumn('sent_email');
         });
     }

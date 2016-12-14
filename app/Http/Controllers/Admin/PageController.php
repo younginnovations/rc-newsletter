@@ -1,33 +1,46 @@
 <?php namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Models\PublishedContract;
-use App\Http\Models\Subscriber;
+use App\Http\Services\ContractService;
+use App\Http\Services\SubscriberService;
 
 /**
  * Class PageController
+ * @property SubscriberService subscriber
+ * @property ContractService   contract
  * @package App\Http\Controllers\Admin
  */
 class PageController extends Controller
 {
-    public function __construct()
+    /**
+     * PageController constructor.
+     *
+     * @param SubscriberService $subscriber
+     */
+    public function __construct(SubscriberService $subscriber, ContractService $contract)
     {
         $this->middleware('user');
+        $this->subscriber = $subscriber;
+        $this->contract   = $contract;
     }
 
     /**
-     * Pages list
-     *
+     * Returns subscribers
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $subscribers = Subscriber::paginate(50);
+        $subscribers = $this->subscriber->getSubscribers();
         return view('admin.page.dashboard', compact('subscribers'));
     }
 
+    /**
+     * Returns contracts
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function published_contract()
     {
-        $published_contracts = PublishedContract::paginate(25);
+        $published_contracts = $this->contract->getContracts();
         return view('admin.page.published_contract', compact('published_contracts'));
     }
 }

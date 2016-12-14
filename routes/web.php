@@ -1,8 +1,7 @@
 <?php
 
 Route::get('/', ['as' => 'home', 'uses' => 'SiteController@home']);
-Route::get('subscribe', ['as' => 'subscribe.get', 'uses' => 'SiteController@subscribeGet']);
-Route::post('subscribe', ['as' => 'subscribe', 'uses' => 'SiteController@subscribe']);
+Route::post('subscribe', ['as' => 'subscribe', 'uses' => 'SiteController@postSubscriber']);
 Route::get('confirm/{email}/{token}', ['as' => 'confirm', 'uses' => 'SiteController@confirm']);
 
 Route::get('confirm_unsubscribe/{email}/{token}', ['as' => 'confirm-unsubscribe', 'uses' =>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property mixed sent_email
  */
-class PublishedContract extends Model
+class Contract extends Model
 {
     protected $casts = ['metadata' => 'object'];
 
