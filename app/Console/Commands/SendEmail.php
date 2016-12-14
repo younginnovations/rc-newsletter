@@ -25,7 +25,6 @@ class SendEmail extends Command
      * @var string
      */
     protected $description = 'Send daily email.';
-
     /**
      * SendEmail constructor.
      *
@@ -36,7 +35,6 @@ class SendEmail extends Command
         parent::__construct();
         $this->email = $email;
     }
-
     /**
      * Sends email
      */
