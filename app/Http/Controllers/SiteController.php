@@ -97,7 +97,7 @@ class SiteController extends Controller
             $confirm->sendConfirmationEmail($subscriber);
             return view('thanks');
         } catch (\Exception $e) {
-            return redirect()->route('home')->withInput()->with('message', 'This email is already subscribed !');
+            return redirect()->route('home')->withInput()->with('message', 'Error has occurred, please try again !');
         }
     }
 
