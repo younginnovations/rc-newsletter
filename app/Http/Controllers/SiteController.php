@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\APIService;
 use App\Http\Services\ContractService;
 use App\Http\Services\SubscriberService;
+use App\Requests\Validation;
 use Illuminate\Http\Request;
 use App\Http\Models\Subscriber;
 use App\Services\ConfirmationService;
@@ -14,6 +15,7 @@ use App\Services\ConfirmationService;
  * @property  subscriber
  * @property SubscriberService subscriber
  * @property ContractService   contract
+ * @property Validation        validation
  * @package App\Http\Controllers
  */
 class SiteController extends Controller
@@ -24,15 +26,18 @@ class SiteController extends Controller
      * @param APIService        $api
      * @param SubscriberService $subscriber
      * @param ContractService   $contract
+     * @param Validation          $validation
      */
     public function __construct(
         APIService $api,
         SubscriberService $subscriber,
-        ContractService $contract
+        ContractService $contract,
+        Validation $validation
     ) {
         $this->api        = $api;
         $this->subscriber = $subscriber;
         $this->contract   = $contract;
+        $this->validation = $validation;
     }
 
     /**
@@ -69,13 +74,7 @@ class SiteController extends Controller
     public function postSubscriber(Request $request, ConfirmationService $confirm)
     {
         $data = [];
-        $this->validate(
-            $request,
-            [
-                'email'  => 'required|email',
-                'source' => 'required',
-            ]
-        );
+        $this->validate($request, $this->validation->rules());
         $data['email']  = $request->input('email');
         $data['token']  = generateToken($data['email']);
         $data['source'] = $request->input('source');

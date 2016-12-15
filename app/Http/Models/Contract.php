@@ -18,9 +18,14 @@ class Contract extends Model
         'sent_email_date'
     ];
 
+    /**
+     * Checks if email is sent and returns text with their color accordingly
+     * @return string
+     */
     public function sent_email()
     {
         $sent_email = $this->sent_email;
+
         if ($sent_email) {
             return "<i style='color: #59d05e;'>Sent</i>";
         } else {

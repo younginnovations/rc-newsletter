@@ -13,7 +13,7 @@ class SendEmailService
     }
 
     /**
-     * write brief description
+     * Sends Email
      *
      * @param $data
      *
