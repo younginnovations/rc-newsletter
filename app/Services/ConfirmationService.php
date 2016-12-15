@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Mail;
  */
 class ConfirmationService
 {
-
-
+    /**
+     * ConfirmationService constructor.
+     */
     public function __construct()
     {
     }

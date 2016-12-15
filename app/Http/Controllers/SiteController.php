@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\APIService;
 use App\Http\Services\ContractService;
-use App\Http\Services\ControllerService;
 use App\Http\Services\SubscriberService;
 use Illuminate\Http\Request;
 use App\Http\Models\Subscriber;
@@ -12,7 +11,6 @@ use App\Services\ConfirmationService;
 /**
  * Class SiteController
  * @property APIService        api
- * @property ControllerService controller
  * @property  subscriber
  * @property SubscriberService subscriber
  * @property ContractService   contract
@@ -24,18 +22,15 @@ class SiteController extends Controller
      * SiteController constructor.
      *
      * @param APIService        $api
-     * @param ControllerService $controller
      * @param SubscriberService $subscriber
      * @param ContractService   $contract
      */
     public function __construct(
         APIService $api,
-        ControllerService $controller,
         SubscriberService $subscriber,
         ContractService $contract
     ) {
         $this->api        = $api;
-        $this->controller = $controller;
         $this->subscriber = $subscriber;
         $this->contract   = $contract;
     }
@@ -82,18 +77,18 @@ class SiteController extends Controller
             ]
         );
         $data['email']  = $request->input('email');
-        $data['token']  = $this->controller->generateToken($data['email']);
+        $data['token']  = generateToken($data['email']);
         $data['source'] = $request->input('source');
         $data['status'] = 0;
         $data['group']  = [
-            'country'         => $this->controller->isAllSelected(
+            'country'         => isAllSelected(
                 $request->input('all_country'),
                 $request->input
                 (
                     'country'
                 )
             ),
-            'corporate_group' => $this->controller->isAllSelected(
+            'corporate_group' => isAllSelected(
                 $request->input('all_corporate_group'),
                 $request->input('corporate_group')
             ),
@@ -117,9 +112,9 @@ class SiteController extends Controller
      */
     public function confirm($email, $token)
     {
-        if ($subscriber = $this->controller->isTokenValid($email, $token)) {
+        if ($subscriber = isTokenValid($email, $token)) {
             $subscriber->status = 1;
-            $subscriber->token  = $this->controller->generateToken($email);
+            $subscriber->token  = generateToken($email);
             $subscriber->save();
             return view('confirm');
         } else {
@@ -166,7 +161,7 @@ class SiteController extends Controller
         $data['email'] = $email;
         $data['token'] = $token;
 
-        if ($this->controller->isTokenValid($data['email'], $data['token'])) {
+        if (isTokenValid($data['email'], $data['token'])) {
             return view('confirm-unsubscribe', compact('email', 'token'));
         } else {
             return view('invalid-token');
@@ -187,7 +182,7 @@ class SiteController extends Controller
         $data['email'] = $email;
         $data['token'] = $token;
 
-        if ($this->controller->isTokenValid($data['email'], $data['token'])) {
+        if (isTokenValid($data['email'], $data['token'])) {
             $subscriber = $this->subscriber->getSubscriber($data['email']);
             $subscriber->delete();
             return view('unsubscribe');
@@ -209,10 +204,10 @@ class SiteController extends Controller
         $groups                     = $this->api->corporate_group();
         $countries                  = $this->api->getCountryList();
         $subscriber                 = $this->subscriber->getSubscriberWithEmailToken($email, $token);
-        $subscribed_country         = $this->controller->getSubscribedCountry($subscriber);
-        $subscribed_corporate_group = $this->controller->getSubscribedCorporateGroup($subscriber);
+        $subscribed_country         = getSubscribedCountry($subscriber);
+        $subscribed_corporate_group = getSubscribedCorporateGroup($subscriber);
 
-        if ($this->controller->isTokenValid($email, $token)) {
+        if (isTokenValid($email, $token)) {
             return view(
                 'setting',
                 compact(
@@ -240,9 +235,9 @@ class SiteController extends Controller
     {
         $data          = [];
         $data['group'] = [
-            'country'         => $this->controller->isAllSelected($request->input('all_country'), $request->input
+            'country'         => isAllSelected($request->input('all_country'), $request->input
                 ('country')),
-            'corporate_group' => $this->controller->isAllSelected(
+            'corporate_group' => isAllSelected(
                 $request->input('all_corporate_group'),
                 $request->input
                 (
@@ -253,7 +248,7 @@ class SiteController extends Controller
         $email         = $request->input('email');
         $token         = $request->input('token');
 
-        if ($this->controller->isTokenValid($email, $token)) {
+        if (isTokenValid($email, $token)) {
             $subscriber = $this->subscriber->getSubscriber($email);
             $subscriber->update($data);
             return view('settingssaved', compact('email'));

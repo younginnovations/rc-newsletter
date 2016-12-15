@@ -16,6 +16,7 @@ class PageController extends Controller
      * PageController constructor.
      *
      * @param SubscriberService $subscriber
+     * @param ContractService   $contract
      */
     public function __construct(SubscriberService $subscriber, ContractService $contract)
     {

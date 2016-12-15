@@ -1,9 +1,11 @@
-<?php
-namespace App\Services\Queue;
-
+<?php namespace App\Services\Queue;
 
 use App\Http\Services\SendEmailService;
 
+/**
+ * Class SendEmailQueue
+ * @package App\Services\Queue
+ */
 class SendEmailQueue
 {
     /**

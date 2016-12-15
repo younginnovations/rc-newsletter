@@ -16,6 +16,7 @@ Class SubscriberService
     {
         return Subscriber::get();
     }
+
     /**
      * Returns subscriber
      */

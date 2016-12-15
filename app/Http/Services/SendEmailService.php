@@ -1,11 +1,13 @@
 <?php namespace App\Http\Services;
 
-
 use App\Mail\NewsletterEmail;
 use Illuminate\Support\Facades\Mail;
 
 class SendEmailService
 {
+    /**
+     * SendEmailService constructor.
+     */
     public function __construct()
     {
     }

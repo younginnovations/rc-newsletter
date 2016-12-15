@@ -26,11 +26,25 @@ Class ContractService
         return Contract::paginate(25);
     }
 
+    /**
+     * Get single contract
+     *
+     * @param $id
+     *
+     * @return mixed
+     */
     public function getContract($id)
     {
         return Contract::whereRaw("contract_id = ?", [$id])->first();
     }
 
+    /**
+     * Saves contract
+     *
+     * @param $data
+     *
+     * @return Contract|ContractService
+     */
     public function saveContract($data)
     {
         return Contract::create($data);
