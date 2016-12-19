@@ -1,0 +1,14 @@
+branch-defaults:
+  login:
+    environment: rc-site-demo
+environment-defaults:
+  rc-site-demo:
+    branch: null
+    repository: null
+global:
+  application_name: resource-contracts-test
+  default_ec2_keyname: resource-contracts-test
+  default_platform: 64bit Amazon Linux 2015.03 v1.4.3 running PHP 5.6
+  default_region: us-east-1
+  profile: eb-cli
+  sc: git
