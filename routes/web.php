@@ -22,6 +22,8 @@ Route::post('publish', ['as' => 'publish.post', 'uses' => 'SiteController@publis
 Route::group(
     ['namespace' => 'Admin'],
     function () {
+        Route::get('log', ['as' => 'log', 'middleware' => 'user', 'uses' =>
+            '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index']);
         Route::get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
         Route::post('login', ['as' => 'login.post', 'uses' => 'AuthController@loginPost']);
         Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
