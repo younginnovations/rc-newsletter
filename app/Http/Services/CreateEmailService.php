@@ -31,12 +31,12 @@ class CreateEmailService
     }
 
     /**
-     * Creates Email
+     * Creates and sends Email
      */
-    public function create()
+    public function send()
     {
-        $published_contracts = $this->contract->get();
-        $subscribers         = $this->subscriber->get();
+        $published_contracts = $this->contract->all();
+        $subscribers         = $this->subscriber->all();
         $this->createEmailReport($subscribers, $published_contracts);
     }
 
@@ -83,7 +83,7 @@ class CreateEmailService
 
             $data['sent_email']      = 1;
             $data['sent_email_date'] = date('Y-m-d');
-            $published_contract      = $this->contract->getContract($published_contract->contract_id);
+            $published_contract      = $this->contract->find($published_contract->contract_id);
             $published_contract->update($data);
         }
 
@@ -123,15 +123,12 @@ class CreateEmailService
      * @param $data_of_subscriber
      * @param $dataForEmail
      */
-    public function addInEmailReport($published_contract, $data_of_published_contract, $data_of_subscriber,
-$dataForEmail)
+    public function addInEmailReport($published_contract, $data_of_published_contract, $data_of_subscriber, $dataForEmail)
     {
-        if (in_array($data_of_published_contract, $data_of_subscriber) or ($data_of_subscriber[0]
-                == "ALL")
+        if (in_array($data_of_published_contract, $data_of_subscriber) or ($data_of_subscriber[0] == "ALL")
         ) {
             if (!($dataForEmail->contains($published_contract))) {
-                $dataForEmail[] =
-                    $published_contract;
+                $dataForEmail[] = $published_contract;
             }
         }
     }

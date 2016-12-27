@@ -1,6 +1,7 @@
 <?php namespace App\Http\Services;
 
 use App\Http\Models\Contract;
+use App\Http\Repositories\Contract\ContractRepositoryInterface;
 
 /**
  * Class ContractService
@@ -9,21 +10,31 @@ use App\Http\Models\Contract;
 Class ContractService
 {
     /**
-     * Returns contracts
-     * @return mixed
+     * ContractService constructor.
+     *
+     * @param ContractRepositoryInterface $contract
      */
-    public function get()
+    public function __construct(ContractRepositoryInterface $contract)
     {
-        return Contract::get();
+        $this->contract = $contract;
     }
 
     /**
-     * Returns contracts
+     * Get All contracts
      * @return mixed
      */
-    public function getContracts()
+    public function all()
     {
-        return Contract::paginate(25);
+        return $this->contract->all();
+    }
+
+    /**
+     * Pagination
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function paginate()
+    {
+        return $this->contract->paginate();
     }
 
     /**
@@ -33,9 +44,9 @@ Class ContractService
      *
      * @return mixed
      */
-    public function getContract($id)
+    public function find($id)
     {
-        return Contract::whereRaw("contract_id = ?", [$id])->first();
+        return $this->contract->find($id);
     }
 
     /**
@@ -45,8 +56,8 @@ Class ContractService
      *
      * @return Contract|ContractService
      */
-    public function saveContract($data)
+    public function save($data)
     {
-        return Contract::create($data);
+        return $this->contract->save($data);
     }
 }

@@ -1,6 +1,6 @@
 <?php namespace App\Http\Services;
 
-use App\Http\Models\Subscriber;
+use App\Http\Repositories\Subscriber\SubscriberRepositoryInterface;
 
 /**
  * Class SubscriberService
@@ -9,20 +9,30 @@ use App\Http\Models\Subscriber;
 Class SubscriberService
 {
     /**
-     * Returns subscribers
-     * @return mixed
+     * SubscriberService constructor.
+     *
+     * @param SubscriberRepositoryInterface $subscriber
      */
-    public function get()
+    public function __construct(SubscriberRepositoryInterface $subscriber)
     {
-        return Subscriber::get();
+        $this->subscriber = $subscriber;
     }
 
     /**
-     * Returns subscriber
+     * Returns subscribers
+     * @return mixed
      */
-    public function getSubscribers()
+    public function all()
     {
-        return Subscriber::paginate(50);
+        return $this->subscriber->all();
+    }
+
+    /**
+     * Returns 50 subscribers
+     */
+    public function paginate()
+    {
+        return $this->subscriber->paginate();
     }
 
     /**
@@ -30,23 +40,11 @@ Class SubscriberService
      *
      * @param $data
      *
-     * @return Subscriber
+     * @return mixed
      */
     public function createSubscriber($data)
     {
-        return Subscriber::create($data);
-    }
-
-    /**
-     * Returns the subscriber matching the email param
-     *
-     * @param $email
-     *
-     * @return mixed
-     */
-    public function getSubscriber($email)
-    {
-        return Subscriber::whereRaw("email = ?", [$email])->first();
+        return $this->subscriber->create($data);
     }
 
     /**
@@ -54,11 +52,29 @@ Class SubscriberService
      *
      * @param $email
      * @param $token
+     *
+     * @return mixed
      */
-    public function getSubscriberWithEmailToken($email, $token)
+    public function findSubscriber($email, $token)
     {
-        return Subscriber::whereRaw("email = ?", [$email])
-                  ->whereRaw("token = ?", [$token])
-                  ->first();
+        return $this->subscriber->find($email, $token);
+    }
+
+    /**
+     * Checks if token is valid
+     *
+     * @param $email
+     * @param $token
+     *
+     * @return bool
+     */
+    function isTokenValid($email, $token)
+    {
+        try {
+            $res = $this->findSubscriber($email, $token);
+            return $res;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

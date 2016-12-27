@@ -13,7 +13,7 @@
 				<th>Subscribed Date</th>
 			</tr>
 			</thead>
-			<tbody>
+			<tbody><?php  ?>
 			@foreach($subscribers as $subscriber)
 				<tr>
 					<td>{{$subscriber->id}}</td>

@@ -66,10 +66,6 @@ class Subscriber extends Model
     {
         $status = $this->status;
 
-        if ($status) {
-            return "Confirmed";
-        } else {
-            return "<i style='color:#ff5f5f'>Not confirmed</i>";
-        }
+        return $status ? "Confirmed" : "Not confirmed";
     }
 }

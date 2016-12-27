@@ -41,7 +41,7 @@ class SendEmail extends Command
     public function fire()
     {
         $this->info("Sending e-mail...");
-        $this->email->create();
+        $this->email->send();
         $this->info("E-mail sent to all subscribers.");
     }
 }
