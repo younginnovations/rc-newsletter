@@ -31,7 +31,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $subscribers = $this->subscriber->getSubscribers();
+        $subscribers = $this->subscriber->paginate();
         return view('admin.page.dashboard', compact('subscribers'));
     }
 
@@ -39,9 +39,9 @@ class PageController extends Controller
      * Returns contracts
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function published_contract()
+    public function contracts()
     {
-        $published_contracts = $this->contract->getContracts();
-        return view('admin.page.published_contract', compact('published_contracts'));
+        $contracts = $this->contract->paginate();
+        return view('admin.contracts.index', compact('contracts'));
     }
 }

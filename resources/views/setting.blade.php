@@ -29,7 +29,7 @@
 			<label class="form__label form__label block">Subscribe to country</label>
 			<select class="form__field block no-border custom_select" id="country_select" name="country[]" multiple>
 				@foreach ($countries as $key => $value)
-					@if(in_array($key, $subscribed_country))
+					@if(in_array($key, $subscriber->group->country))
 						<option value="{{$key}}" selected> {{$value}}</option>
 					@else
 						<option value="{{$key}}"> {{$value}}</option>
@@ -38,7 +38,7 @@
 			<select>
 			<div class="all">
 				<span class="or">or</span>
-				@if(in_array("ALL", $subscribed_country))
+				@if(in_array("ALL", $subscriber->group->country))
 					<label><input type="checkbox" name="all_country" checked="checked"> All</label>
 				@else
 					<label><input type="checkbox" name="all_country"> All</label>
@@ -50,7 +50,7 @@
 			<select class="form__field block no-border custom_select" id="corporate_group_select"
 					name="corporate_group[]" multiple>
 				@foreach ($groups as $group)
-					@if(in_array($group, $subscribed_corporate_group))
+					@if(in_array($group, $subscriber->group->corporate_group))
 						<option value="{{$group}}" selected> {{$group}}</option>
 					@else
 						<option value="{{$group}}"> {{$group}}</option>
@@ -58,9 +58,8 @@
 				@endforeach
 			<select>
 			<div class="all">
-
 				<span class="or">or</span>
-				@if(in_array("ALL", $subscribed_corporate_group))
+				@if(in_array("ALL", $subscriber->group->corporate_group))
 					<label><input type="checkbox" name="all_corporate_group" checked="checked"> All</label>
 				@else
 					<label><input type="checkbox" name="all_corporate_group"> All</label>
@@ -72,8 +71,8 @@
 	<div class="form__footer text-center">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="hidden" name="source" value="rc">
-		<input type="hidden" name="email" value="{{$email}}"/>
-		<input type="hidden" name="token" value="{{$token}}"/>
+		<input type="hidden" name="email" value="{{$subscriber->email}}"/>
+		<input type="hidden" name="token" value="{{$subscriber->token}}"/>
 		<button class="form__btn btn-default no-border">SAVE</button>
 	</div>
 </form>

@@ -31,9 +31,9 @@
                     </a>
                 </li>
                 <li>
-                    <a class="" href="{{route('published_contract')}}">
+                    <a class="" href="{{route('admin.contracts')}}">
                         <i class="fa fa-file-text"></i>
-                        <span>Published Contracts</span>
+                        <span>Contracts</span>
                     </a>
                 </li>
             </ul>
