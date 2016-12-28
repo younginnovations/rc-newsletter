@@ -1,4 +1,4 @@
-<?php namespace App\Http\Services;
+<?php namespace App\Http\Services\Subscriber;
 
 use App\Http\Repositories\Subscriber\SubscriberRepositoryInterface;
 

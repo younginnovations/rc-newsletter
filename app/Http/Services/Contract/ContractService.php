@@ -1,4 +1,4 @@
-<?php namespace App\Http\Services;
+<?php namespace App\Http\Services\Contract;
 
 use App\Http\Models\Contract;
 use App\Http\Repositories\Contract\ContractRepositoryInterface;

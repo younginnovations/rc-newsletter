@@ -1,5 +1,6 @@
-<?php namespace App\Http\Services;
+<?php namespace App\Http\Services\API;
 
+use App\Http\Services\SiteService;
 use GuzzleHttp\Client;
 
 /**

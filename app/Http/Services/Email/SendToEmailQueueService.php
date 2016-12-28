@@ -1,7 +1,11 @@
-<?php namespace App\Http\Services;
+<?php namespace App\Http\Services\Email;
 
 use Illuminate\Contracts\Queue\Queue;
 
+/**
+ * Class SendToEmailQueueService
+ * @package App\Http\Services\Email
+ */
 class SendToEmailQueueService
 {
     /**

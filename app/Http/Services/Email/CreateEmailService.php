@@ -1,4 +1,7 @@
-<?php namespace App\Http\Services;
+<?php namespace App\Http\Services\Email;
+
+use App\Http\Services\Contract\ContractService;
+use App\Http\Services\Subscriber\SubscriberService;
 
 /**
  * Class CreateEmailService

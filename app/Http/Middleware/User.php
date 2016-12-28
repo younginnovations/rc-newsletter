@@ -1,6 +1,6 @@
 <?php namespace App\Http\Middleware;
 
-use App\Http\Services\AuthService;
+use App\Http\Services\Auth\AuthService;
 use Closure;
 
 class User

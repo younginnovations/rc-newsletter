@@ -9,6 +9,9 @@
     <title>Dashboard</title>
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -34,6 +37,12 @@
                     <a class="" href="{{route('admin.contracts')}}">
                         <i class="fa fa-file-text"></i>
                         <span>Contracts</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="{{route('admin.settings')}}">
+                        <i class="fa fa-cog"></i>
+                        <span>Settings</span>
                     </a>
                 </li>
             </ul>

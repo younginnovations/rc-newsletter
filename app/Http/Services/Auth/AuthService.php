@@ -1,5 +1,6 @@
-<?php namespace App\Http\Services;
+<?php namespace App\Http\Services\Auth;
 
+use App\Http\Services\SiteService;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 

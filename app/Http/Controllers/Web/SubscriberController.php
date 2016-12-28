@@ -1,8 +1,8 @@
 <?php namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\ContractService;
-use App\Http\Services\SubscriberService;
+use App\Http\Services\Contract\ContractService;
+use App\Http\Services\Subscriber\SubscriberService;
 use App\Requests\SubscriberRequest;
 use App\Services\ConfirmationService;
 use Illuminate\Http\Request;

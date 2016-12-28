@@ -19,5 +19,9 @@ class RepositoriesServiceProvider extends ServiceProvider
             'App\Http\Repositories\Contract\ContractRepositoryInterface',
             'App\Http\Repositories\Contract\ContractRepository'
         );
+        $this->app->bind(
+            'App\Http\Repositories\Setting\SettingRepositoryInterface',
+            'App\Http\Repositories\Setting\SettingRepository'
+        );
     }
 }

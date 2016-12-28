@@ -1,6 +1,6 @@
 <?php namespace App\Console\Commands;
 
-use App\Http\Services\CreateEmailService;
+use App\Http\Services\Email\CreateEmailService;
 use Illuminate\Console\Command;
 /*
  * Send Email to subscribed users
