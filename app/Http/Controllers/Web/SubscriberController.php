@@ -3,15 +3,15 @@
 use App\Http\Controllers\Controller;
 use App\Http\Services\ContractService;
 use App\Http\Services\SubscriberService;
-use App\Requests\Validation;
+use App\Requests\SubscriberRequest;
 use App\Services\ConfirmationService;
 use Illuminate\Http\Request;
 
 /**
  * Class SubscriberController
- * @property Validation        validation
  * @property SubscriberService subscriber
  * @property ContractService   contract
+ * @property SubscriberRequest subscriberRequest
  */
 class SubscriberController extends Controller
 {
@@ -20,16 +20,16 @@ class SubscriberController extends Controller
      *
      * @param SubscriberService $subscriber
      * @param ContractService   $contract
-     * @param Validation        $validation
+     * @param SubscriberRequest $subscriberRequest
      */
     public function __construct(
         SubscriberService $subscriber,
         ContractService $contract,
-        Validation $validation
+        SubscriberRequest $subscriberRequest
     ) {
         $this->subscriber = $subscriber;
         $this->contract   = $contract;
-        $this->validation = $validation;
+        $this->subscriberRequest = $subscriberRequest;
     }
 
     /**
@@ -43,7 +43,7 @@ class SubscriberController extends Controller
     public function postSubscriber(Request $request, ConfirmationService $confirm)
     {
         $data = [];
-        $this->validate($request, $this->validation->rules());
+        $this->validate($request, $this->subscriberRequest->rules());
         $data['email']  = $request->input('email');
         $data['token']  = generateToken($data['email']);
         $data['source'] = $request->input('source');

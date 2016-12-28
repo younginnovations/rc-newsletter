@@ -1,15 +1,19 @@
 <?php namespace App\Http\Services;
 
+/**
+ * Class CreateEmailService
+ * @package App\Http\Services
+ */
 class CreateEmailService
 {
     /**
      * @var SubscriberService
      */
-    private $subscriber;
+    protected $subscriber;
     /**
      * @var ContractService
      */
-    private $contract;
+    protected $contract;
 
     /**
      * CreateEmailService constructor.
@@ -104,7 +108,7 @@ class CreateEmailService
     }
 
     /**
-     * Checks if email already sent
+     * Checks if email is already sent
      *
      * @param $status
      *

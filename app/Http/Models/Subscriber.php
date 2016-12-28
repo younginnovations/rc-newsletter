@@ -3,16 +3,18 @@
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property mixed status
- * @property mixed email
- * @property mixed source
- * @property mixed group
- * @property mixed token
+ * Class Subscriber Model
  */
 class Subscriber extends Model
 {
+    /**
+     * @array casts
+     */
     protected $casts = ['group' => 'object'];
 
+    /**
+     * @array fillable
+     */
     protected $fillable = [
         'email',
         'group',

@@ -24,20 +24,22 @@
 					<tbody style="padding: 25px 25px 10px 25px;background: #fff;">
 						<tr>
 							<td colspan="2">
-								<p style="margin-top:0;margin-bottom:25px;"><b>{{$published_contract["metadata"]["contract_name"]}}</b></p>
+								<p style="margin-top:0;margin-bottom:7px;"><b>{{$published_contract["metadata"]["contract_name"]}}</b></p>
 							</td>
 						</tr>
 						<tr>
 							<td width="50%">
-								<p><b>Country:</b> {{ $published_contract["metadata"]["country"]["name"] }}</p>
+								<p style="margin-bottom:7px;margin-top:5px;"><b>Country:</b> {{
+								$published_contract["metadata"]["country"]["name"] }}</p>
 							</td>
 							<td width="50%">
-								<p><b>Resource:</b> {{join(',', $published_contract["metadata"]["resource"])}}</p>
+								<p style="margin-bottom:7px;margin-top:5px;"><b>Resource:</b> {{join(',',
+								$published_contract["metadata"]["resource"])}}</p>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<p><b>Corporate Group:</b>
+								<p style="margin-bottom:25px;margin-top:5px;"><b>Corporate Group:</b>
 									@if(empty($published_contract["metadata"]["company"][0]["parent_company"]))
 										Doesn't belong to any corporate group.
 									@else
@@ -48,8 +50,11 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<a href="http://www.resourcecontracts.org/contract/{{$published_contract["metadata"]["open_contracting_id"]}}" target="_blank" style="color:#03A9F4;text-decoration:none; margin-right:15px;padding:10px 15px;background:#646464;color:#fff;border-radius:4px;">View Contract<i> &#x2192;</i></a>
-								<a href='{{$published_contract["metadata"]["file_url"]}}' target="_blank" style="color:#03A9F4;text-decoration:none;padding:10px 15px;background:#646464;color:#fff;border-radius:4px;">View PDF<i> &#x2192;</i></a>
+								<a href="http://www.resourcecontracts.org/contract/{{$published_contract["metadata"]["open_contracting_id"]}}" target="_blank" style="color:#03A9F4;display:inline-block;text-decoration:none; margin-right:15px;padding:10px 15px;background:#646464;color:#fff;border-radius:4px;">View Contract</a>
+								<a href='{{$published_contract["metadata"]["file_url"]}}' target="_blank"
+								   style="color:#03A9F4;display:inline-block;text-decoration:none;padding:10px 15px;
+								   background:#646464;
+								   color:#fff;border-radius:4px;">View PDF</a>
 							</td>
 						</tr>
 					</tbody>

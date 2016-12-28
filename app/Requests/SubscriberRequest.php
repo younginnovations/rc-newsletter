@@ -1,6 +1,6 @@
 <?php namespace App\Requests;
 
-class Validation
+class SubscriberRequest
 {
     /**
      * Validation rules

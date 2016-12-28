@@ -29,6 +29,6 @@ class CreateContracts extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('contracts');
     }
 }

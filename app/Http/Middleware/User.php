@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Middleware;
+<?php namespace App\Http\Middleware;
 
 use App\Http\Services\AuthService;
 use Closure;
@@ -16,6 +14,7 @@ class User
     {
         $this->auth = $auth;
     }
+
     /**
      * Handle an incoming request.
      *
@@ -28,6 +27,7 @@ class User
         if ($this->auth->guest()) {
             return redirect()->route('login');
         }
+
         return $next($request);
     }
 }

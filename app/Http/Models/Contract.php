@@ -1,16 +1,20 @@
-<?php
-
-namespace App\Http\Models;
+<?php namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property mixed sent_email
+ * Class Contract Model
  */
 class Contract extends Model
 {
+    /**
+     * @array casts
+     */
     protected $casts = ['metadata' => 'object'];
 
+    /**
+     * @array fillable
+     */
     protected $fillable = [
         'contract_id',
         'metadata',
@@ -26,10 +30,6 @@ class Contract extends Model
     {
         $sent_email = $this->sent_email;
 
-        if ($sent_email) {
-            return "<i style='color: #59d05e;'>Sent</i>";
-        } else {
-            return "<i style='color: #ff5f5f;'>Not Sent</i>";
-        }
+        return $sent_email ? "Sent" : "Not Sent";
     }
 }

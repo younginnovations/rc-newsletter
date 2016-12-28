@@ -1,5 +1,4 @@
-<?php
-namespace App\Http\Services;
+<?php namespace App\Http\Services;
 
 use GuzzleHttp\Client;
 
@@ -50,7 +49,7 @@ class APIService
     public function countries()
     {
         $endpoint = '/contract/countries';
-        return $this->getFromRcApi($endpoint)->results;
+        return $this->callApi($endpoint)->results;
     }
 
     /**
@@ -60,7 +59,7 @@ class APIService
     public function corporate_group()
     {
         $endpoint = '/contract/attributes';
-        $corporate_group = $this->getFromRcApi($endpoint)->corporate_grouping;
+        $corporate_group = $this->callApi($endpoint)->corporate_grouping;
         asort($corporate_group);
 
         return $corporate_group;
@@ -91,13 +90,14 @@ class APIService
      *
      * @return bool|mixed
      */
-    public function getFromRcApi($endpoint)
+    public function callApi($endpoint)
     {
-        $baseUrl = $this->site->rcApiUrl();
+        $baseUrl = $this->site->apiUrl();
         try {
             $client  = new Client(['base_url' => $baseUrl]);
             $request = $client->get($baseUrl.$endpoint);
             $data    = json_decode($request->getBody()->getContents());
+
             return $data;
         } catch (\Exception $e) {
             return false;
