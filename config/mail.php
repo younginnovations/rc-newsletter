@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'noreply@resourcecontracts.com',
-        'name' => 'Subsite Newsletter',
+        'name'    => 'Subsite Newsletter',
     ],
 
     /*
