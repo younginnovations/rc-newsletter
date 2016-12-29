@@ -48,6 +48,14 @@ return [
             'retry_after' => 90,
         ],
 
+        'send_email' => [
+            'driver' => 'beanstalkd',
+            'host'   => 'localhost',
+            'queue'  => 'send_email',
+            'port'   => '11300',
+            'ttr'    => 60,
+        ],
+
         'sqs' => [
             'driver' => 'sqs',
             'key' => 'your-public-key',
