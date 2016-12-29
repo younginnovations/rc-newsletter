@@ -11,10 +11,20 @@
 			@endif
 			<br/>
 			@foreach($settings as $setting)
-				<div class="form__group">
-					<label class="form__label form__label block">{{ucfirst($setting->key)}}</label>
-					<input type="text" name="{{$setting->key}}" class="form__field form__field block no-border" value="{{$setting->value}}"/>
-				</div>
+				@if($setting->key == 'schedule')
+						<div class="form__group">
+							<label class="form__label form__label block">{{ucfirst($setting->key)}}</label>
+							<select type="text" name="{{$setting->key}}" class="form__field form__field block no-border">
+								<option @if($setting->value == "DAILY") selected="selected" @endif>DAILY</option>
+								<option @if($setting->value == "WEEKLY") selected="selected" @endif>WEEKLY</option>
+							</select>
+						</div>
+				@else
+					<div class="form__group">
+						<label class="form__label form__label block">{{ucfirst($setting->key)}}</label>
+						<input type="text" name="{{$setting->key}}" class="form__field form__field block no-border" value="{{$setting->value}}"/>
+					</div>
+				@endif
 			@endforeach
 		</div>
 		<div class="form__footer text-center">

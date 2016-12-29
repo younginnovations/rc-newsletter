@@ -41,10 +41,11 @@ class SettingsController extends Controller
      */
     public function save(Request $request)
     {
-        $data['name'] = $request->input('name');
-        $data['email'] = $request->input('email');
-        $data['subject'] = $request->input('subject');
+        $data['name']     = $request->input('name');
+        $data['email']    = $request->input('email');
+        $data['subject']  = $request->input('subject');
         $data['schedule'] = $request->input('schedule');
+        $data['time']     = $request->input('time');
         $this->setting->save($data);
 
         return redirect()->route('admin.settings')->with('success', 'Successfully saved.');

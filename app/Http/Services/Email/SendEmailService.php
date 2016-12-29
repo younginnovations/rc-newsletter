@@ -28,5 +28,4 @@ class SendEmailService
         return Mail::to($data['email'])->send(new NewsletterEmail($data['email'], $data['published_contracts'],
                                                                   $data['token'], $data['config']));
     }
-
 }

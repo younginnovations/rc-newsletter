@@ -33,7 +33,13 @@ class SettingsTableSeeder extends Seeder
         DB::table('settings')->insert(
             [
                 'key'   => 'schedule',
-                'value' => '00:00:05'
+                'value' => 'DAILY'
+            ]
+        );
+        DB::table('settings')->insert(
+            [
+                'key'   => 'time',
+                'value' => '00:00:10'
             ]
         );
     }

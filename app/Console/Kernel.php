@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,20 +14,26 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\SendEmail'
+        'App\Console\Commands\SendEmail',
     ];
 
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
+     *
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-        $schedule->command('send:email')->daily();
+        $frequency = DB::table('settings')->select('value')->where('key', 'schedule')->first();
+        $time     = DB::table('settings')->select('value')->where('key', 'time')->first();
+
+        if ($frequency->value == "DAILY") {
+            $schedule->command('newsletter:send')->dailyAt($time->value);
+        } elseif ($frequency->value == "WEEKLY") {
+            $schedule->command('newsletter:send')->weeklyOn(1, $time->value);
+        }
     }
 
     /**
