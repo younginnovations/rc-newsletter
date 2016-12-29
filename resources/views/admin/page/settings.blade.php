@@ -14,7 +14,7 @@
 				@if($setting->key == 'schedule')
 						<div class="form__group">
 							<label class="form__label form__label block">{{ucfirst($setting->key)}}</label>
-							<select type="text" name="{{$setting->key}}" class="form__field form__field block no-border">
+							<select type="text" name="{{$setting->key}}" class="form__field block no-border">
 								<option @if($setting->value == "DAILY") selected="selected" @endif>DAILY</option>
 								<option @if($setting->value == "WEEKLY") selected="selected" @endif>WEEKLY</option>
 							</select>

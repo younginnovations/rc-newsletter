@@ -81,6 +81,10 @@ ul {
   transition: all 0.2s ease;
 }
 
+.form__field option {
+  padding: 7px 4px;
+}
+
 .form__field:focus {
   outline: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
