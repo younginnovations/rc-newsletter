@@ -45,7 +45,7 @@ class SettingController extends Controller
 
         if ($this->subscriber->isTokenValid($email, $token)) {
             return view(
-                'setting',
+                'setting.setting',
                 compact(
                     'countries',
                     'groups',

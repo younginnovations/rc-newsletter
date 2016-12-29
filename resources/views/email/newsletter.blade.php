@@ -17,10 +17,10 @@
 	<tr>
 		<td style="border:0;padding:0;">
 			<div style="font-size:14px;padding: 25px;background: #f2f2f2;color:#333;">
-        		<p style="font-size:18px;max-width: 650px;margin: 0 auto 15px auto;">Published contracts</p>
+        		<p style="font-size:18px;max-width: 650px;width:85%;margin: 0 auto 15px auto;">Published contracts</p>
 
 				@foreach($published_contracts as $published_contract)
-				<table style="padding: 25px;background: #fff;border: 1px solid #e5e5e5;border-radius: 4px;max-width: 650px;margin: 0 auto;">
+				<table style="padding: 25px;background: #fff;border: 1px solid #e5e5e5;border-radius: 4px;max-width:650px;width:85%;margin: 0 auto 25px auto;">
 					<tbody style="padding: 25px 25px 10px 25px;background: #fff;">
 						<tr>
 							<td colspan="2">
