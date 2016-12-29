@@ -23,10 +23,12 @@ class ConfirmationService
      *
      * @param Subscriber $subscriber
      *
+     * @param            $config
+     *
      * @return
      */
-    public function sendConfirmationEmail(Subscriber $subscriber)
+    public function sendConfirmationEmail(Subscriber $subscriber, $config)
     {
-        return Mail::to($subscriber->email)->send(new ConfirmEmail($subscriber->email, $subscriber->token));
+        return Mail::to($subscriber->email)->send(new ConfirmEmail($subscriber->email, $subscriber->token, $config));
     }
 }

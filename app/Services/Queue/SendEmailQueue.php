@@ -1,6 +1,6 @@
 <?php namespace App\Services\Queue;
 
-use App\Http\Services\SendEmailService;
+use App\Http\Services\Email\SendEmailService;
 
 /**
  * Class SendEmailQueue

@@ -41,6 +41,7 @@ class SettingsController extends Controller
      */
     public function save(Request $request)
     {
+        $data['name'] = $request->input('name');
         $data['email'] = $request->input('email');
         $data['subject'] = $request->input('subject');
         $data['schedule'] = $request->input('schedule');

@@ -3,6 +3,10 @@
 use App\Mail\NewsletterEmail;
 use Illuminate\Support\Facades\Mail;
 
+/**
+ * Class SendEmailService
+ * @package App\Http\Services\Email
+ */
 class SendEmailService
 {
     /**
@@ -22,7 +26,7 @@ class SendEmailService
     public function send($data)
     {
         return Mail::to($data['email'])->send(new NewsletterEmail($data['email'], $data['published_contracts'],
-                                                                  $data['token']));
+                                                                  $data['token'], $data['config']));
     }
 
 }

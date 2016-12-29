@@ -4,6 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Subscriber Model
+ * @property mixed email
+ * @property mixed group
+ * @property mixed source
+ * @property mixed status
+ * @property mixed token
  */
 class Subscriber extends Model
 {

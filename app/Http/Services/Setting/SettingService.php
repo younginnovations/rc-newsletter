@@ -45,4 +45,19 @@ class SettingService
 
         return;
     }
+
+    /**
+     * Returns saved config of admin
+     */
+    public function getConfig()
+    {
+        $config = [];
+        $settings = $this->getSettings();
+
+        foreach ($settings as $setting) {
+            $config[$setting->key] = $setting->value;
+        }
+
+        return $config;
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Contract\ContractService;
+use App\Http\Services\Setting\SettingService;
 use App\Http\Services\Subscriber\SubscriberService;
 use App\Requests\SubscriberRequest;
 use App\Services\ConfirmationService;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
  * @property SubscriberService subscriber
  * @property ContractService   contract
  * @property SubscriberRequest subscriberRequest
+ * @property SettingService    setting
  */
 class SubscriberController extends Controller
 {
@@ -21,15 +23,18 @@ class SubscriberController extends Controller
      * @param SubscriberService $subscriber
      * @param ContractService   $contract
      * @param SubscriberRequest $subscriberRequest
+     * @param SettingService    $setting
      */
     public function __construct(
         SubscriberService $subscriber,
         ContractService $contract,
-        SubscriberRequest $subscriberRequest
+        SubscriberRequest $subscriberRequest,
+        SettingService $setting
     ) {
         $this->subscriber = $subscriber;
         $this->contract   = $contract;
         $this->subscriberRequest = $subscriberRequest;
+        $this->setting = $setting;
     }
 
     /**
@@ -63,7 +68,8 @@ class SubscriberController extends Controller
         ];
         try {
             $subscriber = $this->subscriber->createSubscriber($data);
-            $confirm->sendConfirmationEmail($subscriber);
+            $config = $this->setting->getConfig();
+            $confirm->sendConfirmationEmail($subscriber, $config);
 
             return view('thanks');
         } catch (\Exception $e) {

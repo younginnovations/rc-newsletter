@@ -24,7 +24,7 @@ class SendEmail extends Command
      *
      * @var string
      */
-    protected $description = 'Send daily email.';
+    protected $description = 'Send email.';
     /**
      * SendEmail constructor.
      *

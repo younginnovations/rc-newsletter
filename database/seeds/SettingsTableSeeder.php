@@ -14,18 +14,22 @@ class SettingsTableSeeder extends Seeder
     {
         DB::table('settings')->insert(
             [
+                'key'   => 'name',
+                'value' => 'Subsite Newsletter'
+            ]
+        );
+        DB::table('settings')->insert(
+            [
                 'key'   => 'email',
                 'value' => 'noreply@resourcecontracts.com'
             ]
         );
-
         DB::table('settings')->insert(
             [
                 'key'   => 'subject',
                 'value' => 'Newsletter'
             ]
         );
-
         DB::table('settings')->insert(
             [
                 'key'   => 'schedule',
