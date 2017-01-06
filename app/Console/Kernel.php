@@ -27,12 +27,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $frequency = DB::table('settings')->select('value')->where('key', 'schedule')->first();
-        $time     = DB::table('settings')->select('value')->where('key', 'time')->first();
+        $time      = DB::table('settings')->select('value')->where('key', 'time')->first();
 
         if ($frequency->value == "DAILY") {
-            $schedule->command('newsletter:send')->dailyAt($time->value);
+            $schedule->command('newsletter:send')->dailyAt($time->value.":00");
         } elseif ($frequency->value == "WEEKLY") {
-            $schedule->command('newsletter:send')->weeklyOn(1, $time->value);
+            $schedule->command('newsletter:send')->weeklyOn(1, $time->value.":00");
         }
     }
 
