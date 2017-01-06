@@ -3,9 +3,11 @@
 use App\Http\Services\SiteService;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class AuthService
+ * @property LoggerInterface logger
  * @package App\Http\Services
  */
 Class AuthService
@@ -16,13 +18,15 @@ Class AuthService
     protected $client;
 
     /**
-     * @param Client $client
-     * @param SiteService $auth
+     * @param Client          $client
+     * @param SiteService     $auth
+     * @param LoggerInterface $logger
      */
-    public function __construct(Client $client, SiteService $auth)
+    public function __construct(Client $client, SiteService $auth, LoggerInterface $logger)
     {
         $this->client = $client;
         $this->auth   = $auth;
+        $this->logger = $logger;
     }
 
     /**
@@ -55,6 +59,8 @@ Class AuthService
             }
 
         } catch (\Exception $e) {
+            $this->logger->error("Error during login. ".$e->getMessage());
+
             return false;
         }
     }

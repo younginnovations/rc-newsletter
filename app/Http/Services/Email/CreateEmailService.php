@@ -2,6 +2,7 @@
 
 use App\Http\Services\Contract\ContractService;
 use App\Http\Services\Subscriber\SubscriberService;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class CreateEmailService
@@ -25,16 +26,20 @@ class CreateEmailService
      * @param SubscriberService       $subscriber
      * @param ContractService         $contract
      *
+     * @param LoggerInterface         $logger
+     *
      * @internal param Queue $queue
      */
     public function __construct(
         SendToEmailQueueService $sendToEmailQueue,
         SubscriberService $subscriber,
-        ContractService $contract
+        ContractService $contract,
+        LoggerInterface $logger
     ) {
         $this->sendToEmailQueue = $sendToEmailQueue;
         $this->subscriber       = $subscriber;
         $this->contract         = $contract;
+        $this->logger           = $logger;
     }
 
     /**
@@ -90,8 +95,13 @@ class CreateEmailService
 
             $data['sent_email']      = 1;
             $data['sent_email_date'] = date('Y-m-d');
-            $published_contract      = $this->contract->find($published_contract->contract_id);
-            $published_contract->update($data);
+            try {
+                $published_contract      = $this->contract->find($published_contract->contract_id);
+                $published_contract->update($data);
+                $this->logger->info("sent_email flag updated in Contracts table.");
+            } catch (\Exception $e) {
+                $this->logger->error($e->getMessage());
+            }
         }
 
         $this->sendEmailReport($subscriber, $dataForEmail);
@@ -107,6 +117,7 @@ class CreateEmailService
     {
         if (!is_null(json_decode($dataForEmail)) && !empty(json_decode($dataForEmail))) {
             $this->sendToEmailQueue->send($subscriber->email, $dataForEmail, $subscriber->token);
+            $this->logger->info("Email sent to ".$subscriber->email);
         }
     }
 

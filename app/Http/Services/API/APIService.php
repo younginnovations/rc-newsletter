@@ -2,6 +2,7 @@
 
 use App\Http\Services\SiteService;
 use GuzzleHttp\Client;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class APIService
@@ -19,13 +20,15 @@ class APIService
     private $site;
 
     /**
-     * @param Client      $client
-     * @param SiteService $site
+     * @param Client          $client
+     * @param SiteService     $site
+     * @param LoggerInterface $logger
      */
-    public function __construct(Client $client, SiteService $site)
+    public function __construct(Client $client, SiteService $site, LoggerInterface $logger)
     {
         $this->client = $client;
         $this->site   = $site;
+        $this->logger = $logger;
     }
 
     /**
@@ -50,6 +53,7 @@ class APIService
     public function countries()
     {
         $endpoint = '/contract/countries';
+
         return $this->callApi($endpoint)->results;
     }
 
@@ -59,7 +63,7 @@ class APIService
      */
     public function corporate_group()
     {
-        $endpoint = '/contract/attributes';
+        $endpoint        = '/contract/attributes';
         $corporate_group = $this->callApi($endpoint)->corporate_grouping;
         asort($corporate_group);
 
@@ -81,6 +85,7 @@ class APIService
         }
 
         asort($countries);
+
         return $countries;
     }
 
@@ -101,6 +106,8 @@ class APIService
 
             return $data;
         } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
+
             return false;
         }
     }

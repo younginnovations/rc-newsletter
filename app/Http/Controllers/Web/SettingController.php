@@ -5,12 +5,15 @@ use App\Http\Services\API\APIService;
 use App\Http\Services\Contract\ContractService;
 use App\Http\Services\Subscriber\SubscriberService;
 use Illuminate\Http\Request;
+use Psr\Log\LoggerInterface;
+use Exception;
 
 /**
  * Class SettingController
  * @property APIService        api
  * @property SubscriberService subscriber
  * @property ContractService   contract
+ * @property LoggerInterface   logger
  * @package App\Http\Controllers
  */
 class SettingController extends Controller
@@ -20,13 +23,16 @@ class SettingController extends Controller
      *
      * @param APIService        $api
      * @param SubscriberService $subscriber
+     * @param LoggerInterface   $logger
      */
     public function __construct(
         APIService $api,
-        SubscriberService $subscriber
+        SubscriberService $subscriber,
+        LoggerInterface $logger
     ) {
         $this->api        = $api;
         $this->subscriber = $subscriber;
+        $this->logger     = $logger;
     }
 
     /**
@@ -39,9 +45,13 @@ class SettingController extends Controller
      */
     public function setting($email, $token)
     {
-        $groups                     = $this->api->corporate_group();
-        $countries                  = $this->api->getCountryList();
-        $subscriber                 = $this->subscriber->findSubscriber($email, $token);
+        try {
+            $groups                     = $this->api->corporate_group();
+            $countries                  = $this->api->getCountryList();
+            $subscriber                 = $this->subscriber->findSubscriber($email, $token);
+        } catch (Exception $e) {
+            $this->logger->error($e->getMessage());
+        }
 
         if ($this->subscriber->isTokenValid($email, $token)) {
             return view(
@@ -82,9 +92,16 @@ class SettingController extends Controller
         $token         = $request->input('token');
 
         if ($this->subscriber->isTokenValid($email, $token)) {
-            $subscriber = $this->subscriber->findSubscriber($email, $token);
-            $subscriber->update($data);
-            return view('setting.settingssaved', compact('email'));
+            try {
+                $subscriber = $this->subscriber->findSubscriber($email, $token);
+                $subscriber->update($data);
+                $this->logger->info("Settings saved.");
+
+                return view('setting.settingssaved', compact('email'));
+            } catch (Exception $e) {
+                $this->logger->error($e->getMessage());
+            }
+
         } else {
             return 'This request can not be processed';
         }
