@@ -71,7 +71,7 @@ class SubscriberController extends Controller
             $config = $this->setting->getConfig();
             $confirm->sendConfirmationEmail($subscriber, $config);
 
-            return view('thanks');
+            return view('thanks', compact('subscriber'));
         } catch (\Exception $e) {
             return redirect()->route('home')->withInput()->with('message', 'Error has occurred, please try again !');
         }
@@ -92,7 +92,7 @@ class SubscriberController extends Controller
             $subscriber->token  = generateToken($email);
             $subscriber->save();
 
-            return view('confirm');
+            return view('confirm', compact('subscriber'));
         } else {
             return view('invalid-token');
         }

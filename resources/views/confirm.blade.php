@@ -14,7 +14,11 @@
 		<p>Your e-mail is confirmed.</p>
 	</div>
 	<div class="msg__footer">
-		<a href="http://resourcecontracts.org"><i class="fa fa-angle-left"></i>Return back</a>
+		@if(!empty(env($subscriber->source)))
+			<a href="{{env($subscriber->source)}}"><i class="fa fa-angle-left"></i>Return back</a>
+		@else
+			<a href="http://resourcecontracts.org"><i class="fa fa-angle-left"></i>Return back</a>
+		@endif
 	</div>
 </div>
 </body>

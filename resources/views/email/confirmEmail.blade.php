@@ -22,7 +22,11 @@ border:0">
 					<p>Please, do not reply!</p>
 				</div>
 				<div style="text-align:center;padding: 15px 0px 0px 15px;font-size:13px;color:#888;">
-					<p style="margin-bottom:5px;">sent by: <a href="#" style="font-size:13px;color:#888;">Resource Contracts</a></p>
+					@if(!empty(env($source)))
+						<p style="margin-bottom:5px;">sent by: <a href="{{env($source)}}" style="font-size:13px;color:#888;">Resource Contracts</a></p>
+					@else
+						<p style="margin-bottom:5px;">sent by: <a href="http://resourcecontracts.org" style="font-size:13px;color:#888;">Resource Contracts</a></p>
+					@endif
 				</div>
 			</div>
 		</td>

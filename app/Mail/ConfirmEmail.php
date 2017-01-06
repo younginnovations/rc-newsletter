@@ -23,6 +23,11 @@ class ConfirmEmail extends Mailable
     public $token;
 
     /**
+     * Source
+     */
+    public $source;
+
+    /**
      * Config
      */
     public $config;
@@ -32,12 +37,14 @@ class ConfirmEmail extends Mailable
      *
      * @param $email
      * @param $token
+     * @param $source
      * @param $config
      */
-    public function __construct($email, $token, $config)
+    public function __construct($email, $token, $source, $config)
     {
         $this->email  = $email;
         $this->token  = $token;
+        $this->source = $source;
         $this->config = $config;
     }
 

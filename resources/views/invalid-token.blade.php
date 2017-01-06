@@ -14,7 +14,7 @@
         <p>Confirmation token is invalid or email is already confirmed or you are un-subscribed.</p>
     </div>
     <div class="msg__footer">
-        <a href="http://resourcecontracts.org">Goto <span> resourcecontracts.org <i> &#x2192;</i></span></a>
+        <a href="{{env("APP_URL")}}">Goto <span> {{env("APP_URL")}} <i> &#x2192;</i></span></a>
     </div>
 </div>
 </body>

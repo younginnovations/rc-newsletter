@@ -29,6 +29,6 @@ class ConfirmationService
      */
     public function sendConfirmationEmail(Subscriber $subscriber, $config)
     {
-        return Mail::to($subscriber->email)->send(new ConfirmEmail($subscriber->email, $subscriber->token, $config));
+        return Mail::to($subscriber->email)->send(new ConfirmEmail($subscriber->email, $subscriber->token, $subscriber->source, $config));
     }
 }
