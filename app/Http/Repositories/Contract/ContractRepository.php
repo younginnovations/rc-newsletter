@@ -64,4 +64,18 @@ class ContractRepository implements ContractRepositoryInterface
     {
         return $this->contract->create($data);
     }
+
+    /**
+     * Deletes Contract
+     *
+     * @param $id
+     *
+     * @return integer
+     */
+    public function delete($id)
+    {
+        $contract = $this->find($id);
+
+        return $contract->delete();
+    }
 }

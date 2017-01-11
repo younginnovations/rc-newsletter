@@ -11,6 +11,7 @@ Route::group(
       Route::get('setting/{email}/{token}', ['as' => 'setting', 'uses' => 'SettingController@setting']);
       Route::post('setting', ['as' => 'setting.post', 'uses' => 'SettingController@settingPost']);
       Route::post('publish', ['as' => 'publish.post', 'uses' => 'SiteController@publishPost']);
+      Route::post('delete', ['as' => 'delete.post', 'uses' => 'SiteController@deletePost']);
   }
 );
 
@@ -23,7 +24,7 @@ Route::group(
 Route::group(
     ['namespace' => 'Admin'],
     function () {
-        Route::get('log', ['as' => 'log', 'middleware' => 'user', 'uses' =>
+        Route::get('logs', ['as' => 'log', 'middleware' => 'user', 'uses' =>
             '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index']);
         Route::get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
         Route::post('login', ['as' => 'login.post', 'uses' => 'AuthController@loginPost']);

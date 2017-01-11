@@ -38,4 +38,13 @@ interface ContractRepositoryInterface
      * @return Contract
      */
     public function save($data);
+
+    /**
+     * Deletes contract
+     *
+     * @param $id
+     *
+     * @return integer
+     */
+    public function delete($id);
 }

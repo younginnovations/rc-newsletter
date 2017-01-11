@@ -60,4 +60,16 @@ Class ContractService
     {
         return $this->contract->save($data);
     }
+
+    /**
+     * Deletes contract
+     *
+     * @param $id
+     *
+     * @return integer
+     */
+    public function delete($id)
+    {
+        return $this->contract->delete($id);
+    }
 }

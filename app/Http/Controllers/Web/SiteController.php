@@ -60,7 +60,7 @@ class SiteController extends Controller
                     'source'
                 )
             );
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->logger->error($e->getMessage());
         }
     }
@@ -85,6 +85,7 @@ class SiteController extends Controller
                 $this->logger->info("Contract published from admin successfully saved.");
             } catch (Exception $e) {
                 $this->logger->error("Could not save published contract from admin. ".$e->getMessage());
+
                 return 0;
             }
         } else {
@@ -92,5 +93,26 @@ class SiteController extends Controller
         }
 
         return 1;
+    }
+
+    /**
+     * Deletes Contracts
+     *
+     * @param Request $request
+     *
+     * @return string
+     */
+    public function deletePost(Request $request)
+    {
+        $contractId = $request->input('contract_id');
+
+        try {
+            $this->contract->delete($contractId);
+            $this->logger->info("Contract ".$contractId." deleted successfully.");
+            return "Contract ".$contractId." deleted successfully.";
+        } catch (Exception $e) {
+            $this->logger->error("Error deleting contract ".$contractId.". ".$e->getMessage());
+            return "Error deleting contract ".$contractId.".";
+        }
     }
 }
